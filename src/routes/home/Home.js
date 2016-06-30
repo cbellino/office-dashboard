@@ -9,6 +9,7 @@
 
 import React, { PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
+import Dashboard from '../../components/Dashboard';
 import s from './Home.css';
 
 const title = 'React Starter Kit';
@@ -17,7 +18,7 @@ function Home({}, context) {
   context.setTitle(title);
   return (
     <div className={s.root}>
-      DASHBOARD
+      <Dashboard />
     </div>
   );
 }
