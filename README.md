@@ -88,10 +88,10 @@ You can run a local version of [React Storybook](https://github.com/kadirahq/rea
 on your machine using:
 
 ```shell
-$ npm start storybook
+$ npm run storybook
 ```
 
-You can the open it in your browser with: [http://localhost:9001/](http://localhost:9001/)
+You can the open it in your browser with: [http://localhost:9001g/](http://localhost:9001g/)
 
 ### How to Build, Test, Deploy
 
