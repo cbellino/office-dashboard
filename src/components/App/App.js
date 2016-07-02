@@ -8,8 +8,13 @@
  */
 
 import React, { Component, PropTypes } from 'react';
+import { Provider } from 'react-redux';
 import emptyFunction from 'fbjs/lib/emptyFunction';
+
+import configureStore from '../../store/configureStore';
 import s from './App.css';
+
+const store = configureStore();
 
 class App extends Component {
 
@@ -48,11 +53,11 @@ class App extends Component {
   }
 
   render() {
-    return !this.props.error ? (
-      <div>
+    return (
+      <Provider store={store}>
         {this.props.children}
-      </div>
-    ) : this.props.children;
+      </Provider>
+    );
   }
 
 }
