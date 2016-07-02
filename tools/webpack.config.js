@@ -231,7 +231,14 @@ const clientConfig = extend(true, {}, config, {
     // https://webpack.github.io/docs/list-of-plugins.html#occurrenceorderplugin
     new webpack.optimize.OccurrenceOrderPlugin(true),
 
-    ...DEBUG ? [] : [
+    ...DEBUG ? [
+
+      new (require('webpack-build-notifier'))({
+        suppressSuccess: true,
+        sound: false,
+      }),
+
+    ] : [
 
       // Search for equal or similar files and deduplicate them in the output
       // https://webpack.github.io/docs/list-of-plugins.html#dedupeplugin
