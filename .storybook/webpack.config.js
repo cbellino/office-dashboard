@@ -51,6 +51,10 @@ module.exports = {
         ],
         include: path.resolve(__dirname, '../src'),
       },
+      {
+        test: /\.json$/,
+        loader: 'json-loader',
+      },
     ],
   },
 

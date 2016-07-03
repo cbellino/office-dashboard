@@ -1,0 +1,50 @@
+{
+  "instances": [
+    {
+      "id": "20",
+      "status": "in_use",
+      "manager": "mehdi-fekih",
+      "comment": "Molestias fugit inventore corporis"
+    },
+    {
+      "id": "21",
+      "status": "free" },
+    {
+      "id": "22",
+      "status": "free" },
+    {
+      "id": "23",
+      "status": "in_use",
+      "manager": "cbellino",
+      "comment": "Tempora reiciendis corporis nesciunt"
+    },
+    {
+      "id": "24",
+      "status": "locked",
+      "manager": "cbellino",
+      "comment": "Placeat praesentium, architecto"
+    },
+    {
+      "id": "25",
+      "status": "free"
+    },
+    {
+      "id": "26",
+      "status": "free"
+    }
+  ],
+  "people": [
+    {
+      "username": "cbellino",
+      "first_name": "Colin",
+      "last_name": "Bellino",
+      "avatar": "https://avatars3.githubusercontent.com/u/622180?v=3&s=96"
+    },
+    {
+      "username": "mehdi-fekih",
+      "first_name": "Mehdi",
+      "last_name": "Fekih",
+      "avatar": "https://avatars0.githubusercontent.com/u/8351346?v=3&s=96"
+    }
+  ]
+}
