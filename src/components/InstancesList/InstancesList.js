@@ -11,6 +11,7 @@ const instancesNodes = (instances) => (
     <InstancesListItemContainer
       key={instance.get('id')}
       instance={instance}
+      className={s.item}
     />
   ))
 );

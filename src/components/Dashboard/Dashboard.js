@@ -6,8 +6,14 @@ import s from './Dashboard.css';
 
 const Dashboard = () => (
   <div className={s.root}>
-    <h1>Dashboard</h1>
-    <InstancesListContainer />
+    <div className={s.section}></div>
+    <div className={s.section}></div>
+    <div className={s.section}></div>
+    <div className={s.section}></div>
+    <div className={s.section}>
+      <InstancesListContainer />
+    </div>
+    <div className={s.section}></div>
   </div>
 );
 

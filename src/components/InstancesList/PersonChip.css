@@ -1,0 +1,15 @@
+@import '../variables.css';
+
+/* Module */
+
+.root {
+  width: 100%;
+  height: 100%;
+}
+
+/* Components */
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+}

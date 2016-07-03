@@ -1,12 +1,33 @@
 @import '../variables.css';
 
-/*
- * Base styles
- * ========================================================================== */
+/* Module */
 
 .root {
-  font-weight: 100;
-  font-size: 1em; /* ~16px; */
-  font-family: var(--font-family-base);
-  line-height: 1.375; /* ~22px */
+  display: flex;
+  min-height: 48px;
+}
+
+/* Components */
+
+.manager {
+  width: 48px;
+  min-width: 48px;
+  height: 48px;
+  min-height: 48px;
+}
+
+.content {
+  margin-left: 16px;
+  display: flex;
+  flex: auto;
+  align-items: center;
+}
+
+.number {
+  margin-left: 16px;
+  display: flex;
+  align-items: center;
+  text-align: right;
+  font-size: 2em;
+  color: #9e9e9e;
 }

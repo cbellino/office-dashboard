@@ -1,29 +1,34 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
+import classNames from 'classnames';
 
 import { InstancePropType, PersonPropType } from './PropTypes';
+import PersonChip from './PersonChip';
+import InstanceStatusChip from './InstanceStatusChip';
 import s from './InstancesListItem.css';
 
-const InstancesListItem = ({ instance, manager }) => (
-  <div className={s.root}>
-    {manager ? (
-      <div>
-        <img
-          src={manager.get('avatar')}
-          alt={manager.get('username')}
-          style={{ width: '24px' }}
-        />
-        {manager.get('username')}
+const InstancesListItem = ({ instance, manager, className }) => {
+  const rootClass = classNames(className, s.root);
+
+  return (
+    <div className={rootClass}>
+      <InstanceStatusChip className={s.manager} status={instance.get('status')}>
+        {manager ? (<PersonChip person={manager} />) : null}
+      </InstanceStatusChip>
+      <div className={s.content}>
+        {instance.get('status') !== 'free' ? instance.get('comment') : 'Free'}
       </div>
-    ) : null}
-    <b>{`#${instance.get('id')}`}</b>
-    <span>{instance.get('comment')}</span>
-  </div>
-);
+      <div className={s.number}>
+        <div>{`#${instance.get('id')}`}</div>
+      </div>
+    </div>
+  );
+};
 
 InstancesListItem.propTypes = {
   instance: InstancePropType.isRequired,
   manager: PersonPropType,
+  className: PropTypes.string,
 };
 
 export default withStyles(s)(InstancesListItem);
