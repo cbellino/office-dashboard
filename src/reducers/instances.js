@@ -1,22 +1,21 @@
 /* eslint-disable no-use-before-define */
 
-import { List, fromJS } from 'immutable';
-import { GET_INSTANCES } from '../constants';
+import { List } from 'immutable';
+import { SET_INSTANCES } from '../constants';
 
 const INITIAL_STATE = List.of();
-const instances = fromJS(require('../store/data').instances);
 
 const instancesReducer = (state = INITIAL_STATE, action = {}) => {
   switch (action.type) {
-    case GET_INSTANCES:
-      return getInstances(state);
+    case SET_INSTANCES:
+      return setInstances(state, action.payload);
     default:
       return state;
   }
 };
 
-const getInstances = (state) => (
-  instances
-);
+const setInstances = (state, instances = List.of()) => {
+  return state.clear().concat(instances);
+};
 
 export default instancesReducer;

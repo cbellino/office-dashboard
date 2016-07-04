@@ -1,3 +1,3 @@
-export const GET_INSTANCES = 'GET_INSTANCES';
+export const SET_INSTANCES = 'SET_INSTANCES';
 
 export const GET_PERSON = 'GET_PERSON';

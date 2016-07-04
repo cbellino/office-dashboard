@@ -18,7 +18,7 @@ function Home({}, context) {
   context.setTitle(title);
   return (
     <div className={s.root}>
-      <Dashboard />
+      <Dashboard store={context.store} />
     </div>
   );
 }

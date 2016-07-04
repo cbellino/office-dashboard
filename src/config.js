@@ -45,3 +45,10 @@ export const auth = {
   },
 
 };
+
+export const firebase = {
+  apiKey: process.env.FIREBASE_API_KEY || 'AIzaSyCQpoUaoGiRc8MaOc0rr294E4LNPjmNLw0',
+  authDomain: process.env.FIREBASE_AUTH_DOMAIN || 'ayl-dashboard-dev.firebaseapp.com',
+  databaseURL: process.env.FIREBASE_DATABASE_URL || 'https://ayl-dashboard-dev.firebaseio.com',
+  storageBucket: process.env.FIREBASE_STORAGE_BUCKET || 'firebase-ayl-dashboard-dev.appspot.com',
+};

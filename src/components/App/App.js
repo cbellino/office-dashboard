@@ -14,7 +14,7 @@ import emptyFunction from 'fbjs/lib/emptyFunction';
 import configureStore from '../../store/configureStore';
 import s from './App.css';
 
-const store = configureStore();
+export const store = configureStore();
 
 class App extends Component {
 
@@ -55,7 +55,9 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        {this.props.children}
+        <div>
+          {this.props.children}
+        </div>
       </Provider>
     );
   }

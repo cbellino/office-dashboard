@@ -1,5 +1,21 @@
-import { GET_INSTANCES } from '../constants';
+import { List } from 'immutable';
 
-export const getInstances = () => (
-  { type: GET_INSTANCES }
+import { SET_INSTANCES } from '../constants';
+import { firebaseDb } from '../core/firebase';
+import { snapshotToList } from '../core/transform';
+
+const instancesRef = firebaseDb.ref('instances');
+
+export const setInstances = (instances = List.of()) => (
+  { type: SET_INSTANCES, payload: instances }
+);
+
+export const startListeningToInstances = () => (
+  dispatch => {
+    // Sets the instances.
+    instancesRef.on('value', (snapshot) => {
+      const instances = snapshotToList(snapshot);
+      dispatch(setInstances(instances));
+    });
+  }
 );

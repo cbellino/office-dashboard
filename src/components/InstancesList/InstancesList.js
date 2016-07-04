@@ -18,7 +18,7 @@ const instancesNodes = (instances) => (
 
 const emptyNodes = (
   <div>
-    <div>¯\\_(ツ)_/¯</div>
+    <div>{'¯\\_(ツ)_/¯'}</div>
     <h5>{' No instances.'}</h5>
   </div>
 );
