@@ -4,11 +4,10 @@ import InsertCssContext from '../../../../.storybook/InsertCssContext';
 import Provider from '../../../../.storybook/Provider';
 
 import Dashboard from '../Dashboard';
-import s from '../Dashboard.css';
 
 storiesOf('Dashboard', module)
   .addDecorator(Provider)
-  .addDecorator(InsertCssContext.bind(null, s))
+  .addDecorator(InsertCssContext)
 
   .add('default', () => (
     <Dashboard>

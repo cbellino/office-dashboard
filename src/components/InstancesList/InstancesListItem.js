@@ -31,4 +31,6 @@ InstancesListItem.propTypes = {
   className: PropTypes.string,
 };
 
+console.log('style', withStyles(s)(InstancesListItem));
+
 export default withStyles(s)(InstancesListItem);

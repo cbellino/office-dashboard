@@ -13,14 +13,9 @@ class Dashboard extends Component {
   render() {
     return (
       <div className={s.root}>
-        <div className={s.section}></div>
-        <div className={s.section}></div>
-        <div className={s.section}></div>
-        <div className={s.section}></div>
         <div className={s.section}>
           <InstancesListContainer />
         </div>
-        <div className={s.section}></div>
       </div>
     );
   }

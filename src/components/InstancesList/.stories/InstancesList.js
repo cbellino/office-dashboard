@@ -5,7 +5,6 @@ import InsertCssContext from '../../../../.storybook/InsertCssContext';
 import Provider from '../../../../.storybook/Provider';
 
 import InstancesList from '../InstancesList';
-import s from '../InstancesList.css';
 
 const instances = fromJS([
   { id: '1', manager: 'cbellino', comment: 'Molestias fugit inventore corporis' },
@@ -17,7 +16,7 @@ const instances = fromJS([
 
 storiesOf('InstancesList', module)
   .addDecorator(Provider)
-  .addDecorator(InsertCssContext.bind(null, s))
+  .addDecorator(InsertCssContext)
 
   .add('default', () => (
     <InstancesList instances={instances} />

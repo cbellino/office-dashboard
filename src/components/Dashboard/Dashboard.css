@@ -1,26 +1,17 @@
 @import '../variables.css';
 
-/* Global */
-
-html,
-body {
-  height: 100%;
-  margin: 0;
-}
-
-body {
-  background: #f0f0f0;
-}
-
 /* Module */
 
 .root {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
   font-weight: 100;
   font-size: 1em; /* ~16px; */
   font-family: var(--font-family-base);
   line-height: 1.375; /* ~22px */
-  display: flex;
-  flex-wrap: wrap;
 }
 
 /* Components */
@@ -29,6 +20,6 @@ body {
   box-sizing: border-box;
   margin: 0;
   padding: 16px;
-  width: 33%;
-  min-height: 200px;
+  min-width: 500px;
+  min-height: 300px;
 }
