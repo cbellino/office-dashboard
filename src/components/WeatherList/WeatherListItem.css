@@ -1,0 +1,33 @@
+@import '../variables.css';
+
+/* Module */
+
+.root {
+  display: flex;
+  min-height: 48px;
+}
+
+/* Components */
+
+.manager {
+  width: 48px;
+  min-width: 48px;
+  height: 48px;
+  min-height: 48px;
+}
+
+.content {
+  margin-left: 16px;
+  display: flex;
+  flex: auto;
+  align-items: center;
+}
+
+.number {
+  margin-left: 16px;
+  display: flex;
+  align-items: center;
+  text-align: right;
+  font-size: 2em;
+  color: #9e9e9e;
+}
