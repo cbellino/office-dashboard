@@ -10,17 +10,16 @@
 import React, { PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Layout.css';
-import Header from '../Header';
-import Feedback from '../Feedback';
-import Footer from '../Footer';
+import Navbar from '../Navbar';
+// import Header from '../Header'; // TODO: remove this component's files
+// import Feedback from '../Feedback'; // TODO: remove this component's files
+// import Footer from '../Footer'; // TODO: remove this component's files
 
 function Layout({ children }) {
   return (
     <div>
-      <Header />
+      <Navbar />
       {React.Children.only(children)}
-      <Feedback />
-      <Footer />
     </div>
   );
 }

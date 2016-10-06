@@ -1,0 +1,23 @@
+.root {
+  position: relative;
+}
+
+.container {
+  position: absolute;
+  width: 46px;
+  padding: 1px 0;
+  left: -14px;
+  font-size: 0.6em;
+  background: #000000;
+  border-radius: 3px;
+  color: #ffffff;
+  text-align: center;
+}
+
+.error .container {
+  background: #f44336;
+}
+
+.success .container {
+  background: #4caf50;
+}

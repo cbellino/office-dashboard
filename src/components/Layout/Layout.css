@@ -18,15 +18,23 @@
  * ========================================================================== */
 
 html {
-  color: #222;
+  color: #002025;
   font-weight: 100;
   font-size: 1em; /* ~16px; */
   font-family: var(--font-family-base);
   line-height: 1.375; /* ~22px */
+  height: 100%;
 }
 
-a {
-  color: #0074c2;
+body,
+[id="app"],
+[data-reactroot] {
+  height: 100%;
+}
+
+[data-reactroot] {
+  display: flex;
+  width: 100%;
 }
 
 /*

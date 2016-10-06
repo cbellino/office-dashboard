@@ -1,0 +1,15 @@
+@import '../variables.css';
+
+:root {
+  --brand-color: #61dafb;
+}
+
+.root {
+  background: #000000;
+  color: #ffffff;
+  width: 56px;
+}
+
+.container {
+  padding: 8px;
+}
