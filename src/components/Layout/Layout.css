@@ -11,7 +11,10 @@
 
 /*! React Starter Kit | MIT License | https://www.reactstarterkit.com/ */
 
+
 @import '../variables.css';
+
+@import 'https://fonts.googleapis.com/css?family=Open+Sans';
 
 /*
  * Base styles

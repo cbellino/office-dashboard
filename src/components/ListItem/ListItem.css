@@ -12,15 +12,46 @@
 }
 
 .content {
-  width: 100%;
+
 }
 
 .itemTitle {
   line-height: 120%;
 }
 
+.itemTitle a {
+  color: inherit;
+  text-decoration: none;
+}
+
 .itemContent {
   font-size: 0.8em;
   font-weight: 300;
   color: #546063;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.actions {
+  display: flex;
+  align-content: flex-end;
+  align-items: center;
+  width: 120px;
+}
+
+.action {
+  flex: 1 1 auto;
+  text-align: center;
+  font-size: 0.8em;
+  font-weight: 500;
+  color: #2e8594;
+  text-transform: uppercase;
+}
+
+.action a,
+.action button {
+  color: inherit;
+  text-decoration: none;
 }

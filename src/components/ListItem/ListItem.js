@@ -6,12 +6,13 @@ const propTypes = {
   item: PropTypes.shape({}).isRequired,
   avatar: PropTypes.node,
   strip: PropTypes.node,
+  actions: PropTypes.arrayOf(PropTypes.node),
 };
 
 const defaultProps = {};
 
 function ListItem(props) {
-  const { item, avatar, strip } = props;
+  const { item, avatar, strip, actions } = props;
 
   return (
     <div className={s.root}>
@@ -25,6 +26,12 @@ function ListItem(props) {
         <div className={s.content}>
           <div className={s.itemTitle}>{item.title}</div>
           <div className={s.itemContent}>{item.content}</div>
+        </div>
+        <div className={s.spacer} />
+        <div className={s.actions}>
+          {actions.map((action, index) =>
+            <div key={index} className={s.action}>{action}</div>
+          )}
         </div>
       </div>
     </div>

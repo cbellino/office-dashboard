@@ -1,29 +1,8 @@
 import React, { PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import Layout from '../../components/Layout';
-import Section from '../../components/Section';
-import List from '../../components/List';
-import ListItem from '../../components/ListItem';
-import Strip from '../../components/Strip';
+import PreviewSection from '../../containers/PreviewSection';
 import s from './Home.css';
-
-const renderItem = (preview) => {
-  const item = {
-    key: preview.key,
-    title: preview.name,
-    content: preview.comment,
-  };
-  const status = (preview.status !== 'free') ? 'busy' : 'free';
-  const stripVariant = (status === 'busy') ? 'error' : 'success';
-
-  return (
-    <ListItem
-      key={item.key}
-      item={item}
-      strip={<Strip variant={stripVariant}>{status}</Strip>}
-    />
-  );
-};
 
 function Home(props) {
   const { previews } = props;
@@ -32,9 +11,7 @@ function Home(props) {
     <Layout>
       <div className={s.root}>
         <div className={s.container}>
-          <Section title={'Previews'}>
-            <List items={previews} renderItem={renderItem} strip />
-          </Section>
+          <PreviewSection previews={previews} />
         </div>
       </div>
     </Layout>
