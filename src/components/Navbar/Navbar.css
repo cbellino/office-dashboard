@@ -7,7 +7,12 @@
 .root {
   background: #000000;
   color: #ffffff;
-  width: 56px;
+}
+
+@media all and (min-width: 600px) and (orientation: portrait) {
+  .root {
+    width: 56px;
+  }
 }
 
 .container {

@@ -29,6 +29,7 @@ import schema from './data/schema';
 import routes from './routes';
 import assets from './assets'; // eslint-disable-line import/no-unresolved
 import { port, auth } from './config';
+import configureStore from './store/configureStore';
 
 const app = express();
 
@@ -96,6 +97,8 @@ app.get('*', async (req, res, next) => {
         // eslint-disable-next-line no-underscore-dangle
         styles.forEach(style => css.add(style._getCss()));
       },
+      // TODO: initial state
+      store: configureStore(),
     };
 
     const route = await UniversalRouter.resolve(routes, {

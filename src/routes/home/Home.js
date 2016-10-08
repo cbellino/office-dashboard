@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
+import { connect } from 'react-redux';
 import Layout from '../../components/Layout';
 import PreviewSection from '../../containers/PreviewSection';
 import s from './Home.css';
@@ -28,4 +29,16 @@ Home.propTypes = {
   })).isRequired,
 };
 
-export default withStyles(s)(Home);
+Home.contextTypes = {
+  store: PropTypes.object.isRequired,
+};
+
+function mapStateToProps() {
+  return {};
+}
+
+function mapDispatchToProps() {
+  return {};
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(s)(Home));

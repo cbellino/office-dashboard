@@ -3,6 +3,7 @@ import Section from '../components/Section';
 import List from '../components/List';
 import ListItem from '../components/ListItem';
 import Strip from '../components/Strip';
+// import { Preview } from './preview';
 
 const renderItem = (preview) => {
   const status = (preview.status !== 'free') ? 'busy' : 'free';
@@ -11,7 +12,7 @@ const renderItem = (preview) => {
   const item = {
     key: preview.key,
     title: <a target={'_blank'} href={url}>{preview.name}</a>,
-    content: preview.comment,
+    content: <a target={'_blank'} href={url}>{preview.comment}</a>,
   };
 
   return (

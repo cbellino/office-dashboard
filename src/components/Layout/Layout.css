@@ -37,7 +37,14 @@ body,
 
 [data-reactroot] {
   display: flex;
+  flex-direction: column;
   width: 100%;
+}
+
+@media all and (min-width: 600px) and (orientation: portrait) {
+  [data-reactroot] {
+    flex-direction: row;
+  }
 }
 
 /*

@@ -1,12 +1,3 @@
-/**
- * React Starter Kit (https://www.reactstarterkit.com/)
- *
- * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE.txt file in the root directory of this source tree.
- */
-
 import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -16,6 +7,7 @@ import queryString from 'query-string';
 import { createPath } from 'history/PathUtils';
 import history from './core/history';
 import App from './components/App';
+import configureStore from './store/configureStore';
 
 // Global (context) variables that can be easily accessed from any React component
 // https://facebook.github.io/react/docs/context.html
@@ -27,6 +19,7 @@ const context = {
     const removeCss = styles.map(x => x._insertCss());
     return () => { removeCss.forEach(f => f()); };
   },
+  store: configureStore(),
 };
 
 function updateTag(tagName, keyName, keyValue, attrName, attrValue) {
