@@ -1,4 +1,6 @@
 import { combineReducers, createStore, compose, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import promise from 'redux-promise';
 import rootReducer from '../reducers';
 
 const INITIAL_STATE = {};
@@ -11,7 +13,7 @@ export default function configureStore(history, initialState = INITIAL_STATE) {
   ) ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({}) // eslint-disable-line no-underscore-dangle
   : compose;
   const enhancer = composeEnhancers(
-    // applyMiddleware(MY_MIDDLEWARE),
+    applyMiddleware(thunk, promise),
   );
   const store = {
     ...createStore(rootReducer, initialState, enhancer),
