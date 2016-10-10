@@ -1,0 +1,33 @@
+@import '../variables.css';
+
+.root {
+  composes: root from '../ListItem/ListItem.css';
+
+  min-height: 36px;
+}
+
+.container {
+  composes: container from '../ListItem/ListItem.css';
+}
+
+.status {
+  composes: status from '../ListItem/ListItem.css';
+}
+
+.content {
+  composes: content from '../ListItem/ListItem.css';
+}
+
+.spacer {
+  composes: spacer from '../ListItem/ListItem.css';
+}
+
+.actions {
+  composes: actions from '../ListItem/ListItem.css';
+}
+
+.action {
+  composes: action from '../ListItem/ListItem.css';
+
+  display: block;
+}
