@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import {
+  PREVIEWS_FETCH_REQUESTED,
   PREVIEWS_FETCH_SUCCEEDED,
   PREVIEWS_FETCH_FAILED,
 } from '../constants/ActionTypes';
@@ -20,11 +21,11 @@ function updateEntities(state, payload) {
   return Object.assign({}, state, { previews });
 }
 
-const INITIAL_ENTITIES = {
+const INITIAL_ENTITIES_STATE = {
   previews: {},
 };
 
-function entitiesReducer(state = INITIAL_ENTITIES, action) {
+function entitiesReducer(state = INITIAL_ENTITIES_STATE, action) {
   switch (action.type) {
     case PREVIEWS_FETCH_SUCCEEDED:
       return updateEntities(state, action.payload);
@@ -36,24 +37,40 @@ function entitiesReducer(state = INITIAL_ENTITIES, action) {
 }
 
 /*
-* Previews per page reducer.
+* Previews for the home component.
 */
 
-function updatePreviewsPerPage(state, payload) {
-  const page = 1;
+const INITIAL_HOME_STATE = {
+  previews: {
+    items: [],
+    isFetching: true,
+    isEditing: null,
+  },
+};
 
+function updateHomePreviews(state, payload) {
   return Object.assign({}, state, {
-    [page]: {
+    previews: {
       items: payload.previews.map((preview) => preview.id),
       isFetching: false,
+      isEditing: null,
     },
   });
 }
 
-function previewsPerPageReducer(state = {}, action) {
+function fetchHomePreviews(state) {
+  const newState = state;
+  newState.previews.isFetching = true;
+
+  return newState;
+}
+
+function homeReducer(state = INITIAL_HOME_STATE, action) {
   switch (action.type) {
+    case PREVIEWS_FETCH_REQUESTED:
+      return fetchHomePreviews(state, action.payload);
     case PREVIEWS_FETCH_SUCCEEDED:
-      return updatePreviewsPerPage(state, action.payload);
+      return updateHomePreviews(state, action.payload);
     default:
       return state;
   }
@@ -65,7 +82,7 @@ function previewsPerPageReducer(state = {}, action) {
 
 const rootReducer = combineReducers({
   entities: entitiesReducer,
-  previewsPerPage: previewsPerPageReducer,
+  home: homeReducer,
 });
 
 export default rootReducer;

@@ -30,15 +30,15 @@ const renderItem = (preview) => {
 };
 
 function PreviewSection(props) {
-  const { previews } = props;
-  // TODO: remove this and use previews.isLoading prop instead.
-  const isLoading = !previews || previews.length === 0;
+  const { previews, isFetching } = props;
 
   return (
     <Section title={'Previews'}>
-      {!isLoading ? (
+      {isFetching ? (
+        'Loading'
+      ) : (
         <List items={previews} renderItem={renderItem} />
-      ) : 'Loading'}
+      )}
     </Section>
   );
 }
@@ -51,20 +51,18 @@ PreviewSection.propTypes = {
     owner: PropTypes.string.isRequired,
     status: PropTypes.string.isRequired,
   })),
+  isFetching: PropTypes.bool.isRequired,
 };
 
 function mapStateToProps(state) {
-  const { previewsPerPage, entities: { previews } } = state;
+  const { home, entities } = state;
   const {
     isFetching,
     items,
-  } = previewsPerPage[1] || {
-    isFetching: true,
-    items: [],
-  };
+  } = home.previews;
 
   return {
-    previews: isFetching ? [] : items.map((id) => previews[id]),
+    previews: isFetching ? [] : items.map((id) => entities.previews[id]),
     isFetching,
   };
 }

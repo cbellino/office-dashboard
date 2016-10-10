@@ -19,7 +19,7 @@ function fetchPreviewsSuccess(previews) {
 }
 
 function fetchPreviewsFailure(error) {
-  return { type: PREVIEWS_FETCH_FAILED, error: error };
+  return { type: PREVIEWS_FETCH_FAILED, error };
 }
 
 export function fetchPreviews() {
