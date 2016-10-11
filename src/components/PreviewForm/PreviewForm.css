@@ -14,6 +14,24 @@
   composes: status from '../ListItem/ListItem.css';
 }
 
+.statusButton {
+  display: block;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  transition: box-shadow 200ms ease-in, translate 200ms ease-in;
+  outline: none;
+}
+
+.statusButton:hover {
+  box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+}
+
+.itemTitle {
+  composes: itemTitle from '../ListItem/ListItem.css';
+}
+
 .content {
   composes: content from '../ListItem/ListItem.css';
 }

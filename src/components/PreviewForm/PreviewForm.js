@@ -15,7 +15,6 @@ const propTypes = {
   onSave: PropTypes.func.isRequired,
 };
 
-// TODO: move this into a separate file ?
 function getInverseStatus(status) {
   return (status === 'free') ? 'busy' : 'free';
 }
@@ -62,27 +61,31 @@ class PreviewForm extends Component {
 
   render() {
     const { preview } = this.state;
-    const commentStyle = { width: '100%' };
+
+    const commentStyle = {
+      style: { width: '100%' },
+      underlineStyle: { borderColor: '#009cb7' },
+    };
 
     return (
       <div className={s.root}>
         <div className={s.container}>
           <div className={s.status}>
-            <button onClick={this.onStatusChange}>
+            <button onClick={this.onStatusChange} className={s.statusButton}>
               <PreviewStatus status={preview.status} />
             </button>
           </div>
           <div className={s.content}>
-            <div>{preview.name}</div>
+            <div className={s.itemTitle}>{preview.name}</div>
             <TextField
               hintText={'Comment'}
               defaultValue={preview.comment}
               onChange={this.onCommentChange}
-              style={commentStyle}
+              style={commentStyle.style}
+              underlineStyle={commentStyle.underlineStyle}
               multiLine
             />
           </div>
-          <div className={s.spacer} />
           <div className={s.actions}>{this.renderActions()}</div>
         </div>
       </div>
