@@ -26,7 +26,7 @@ PreviewSection.propTypes = {
   previews: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    comment: PropTypes.string.isRequired,
+    comment: PropTypes.string,
     owner: PropTypes.string.isRequired,
     status: PropTypes.string.isRequired,
   })),

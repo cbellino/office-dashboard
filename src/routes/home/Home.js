@@ -39,4 +39,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(null, mapDispatchToProps)(withStyles(s)(Home));
+export default connect(undefined, mapDispatchToProps)(withStyles(s)(Home));

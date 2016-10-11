@@ -1,4 +1,6 @@
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { updatePreview } from '../../actions';
 import ListItem from '../ListItem';
 import PreviewForm from '../PreviewForm';
 import PreviewStatus from '../PreviewStatus';
@@ -7,10 +9,11 @@ const propTypes = {
   preview: PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    comment: PropTypes.string.isRequired,
+    comment: PropTypes.string,
     owner: PropTypes.string.isRequired,
     status: PropTypes.string.isRequired,
   }),
+  onSave: PropTypes.func.isRequired,
 };
 
 class PreviewListItem extends Component {
@@ -41,7 +44,10 @@ class PreviewListItem extends Component {
   // TODO: display a toast when save fail, with a retry button.
   onSave(preview) {
     this.onEditEnd();
-    console.log('[SAVE]', preview);
+
+    if (this.props.onSave) {
+      this.props.onSave(preview);
+    }
   }
 
   renderActions() {
@@ -74,4 +80,10 @@ class PreviewListItem extends Component {
 
 PreviewListItem.propTypes = propTypes;
 
-export default PreviewListItem;
+function mapDispatchToProps(dispatch) {
+  return {
+    onSave: (preview) => dispatch(updatePreview(preview)),
+  };
+}
+
+export default connect(undefined, mapDispatchToProps)(PreviewListItem);

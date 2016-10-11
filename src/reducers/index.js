@@ -13,11 +13,7 @@ function logError(state, error) {
 * Entities reducer.
 */
 
-function updateEntities(state, payload) {
-  const previews = Object.assign(...Object.entries(payload.previews)
-    .map(([index, val]) => ({ [val.id]: val })) // eslint-disable-line no-unused-vars
-  );
-
+function updateEntities(state, previews) {
   return Object.assign({}, state, { previews });
 }
 
@@ -28,7 +24,7 @@ const INITIAL_ENTITIES_STATE = {
 function entitiesReducer(state = INITIAL_ENTITIES_STATE, action) {
   switch (action.type) {
     case PREVIEWS_FETCH_SUCCEEDED:
-      return updateEntities(state, action.payload);
+      return updateEntities(state, action.payload.entities.previews);
     case PREVIEWS_FETCH_FAILED:
       return logError(state, action.error);
     default:
@@ -48,10 +44,10 @@ const INITIAL_HOME_STATE = {
   },
 };
 
-function updateHomePreviews(state, payload) {
+function updateHomePreviews(state, items) {
   return Object.assign({}, state, {
     previews: {
-      items: payload.previews.map((preview) => preview.id),
+      items,
       isFetching: false,
       isEditing: null,
     },
@@ -70,7 +66,7 @@ function homeReducer(state = INITIAL_HOME_STATE, action) {
     case PREVIEWS_FETCH_REQUESTED:
       return fetchHomePreviews(state, action.payload);
     case PREVIEWS_FETCH_SUCCEEDED:
-      return updateHomePreviews(state, action.payload);
+      return updateHomePreviews(state, action.payload.result.previews);
     default:
       return state;
   }

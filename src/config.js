@@ -46,3 +46,9 @@ export const auth = {
   },
 
 };
+
+export const graphql = {
+
+  url: 'http://localhost:3001/graphql',
+
+};
