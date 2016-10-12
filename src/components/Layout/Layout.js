@@ -3,6 +3,7 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import s from './Layout.css';
 import Navbar from '../Navbar';
+import Notification from '../../containers/Notification';
 
 function Layout({ children }) {
   return (
@@ -10,6 +11,7 @@ function Layout({ children }) {
       <div>
         <Navbar />
         {React.Children.only(children)}
+        <Notification />
       </div>
     </MuiThemeProvider>
   );

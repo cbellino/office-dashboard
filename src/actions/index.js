@@ -46,7 +46,7 @@ function updatePreviewRequest(preview) {
 function updatePreviewSuccess(preview) {
   return {
     type: PREVIEW_UPDATE_SUCCEEDED,
-    payload: { preview },
+    payload: { preview, notification: { message: 'Preview saved.' } },
   };
 }
 

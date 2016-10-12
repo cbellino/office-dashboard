@@ -30,6 +30,7 @@ class PreviewListItem extends Component {
     this.onSave = this.onSave.bind(this);
   }
 
+  // TODO: store this in state.home.<id>.isEditing
   onEditStart() {
     this.setState({ isEditing: true });
   }
@@ -38,8 +39,7 @@ class PreviewListItem extends Component {
     this.setState({ isEditing: false });
   }
 
-  // TODO: display a toast when save success.
-  // TODO: display a toast when save fail, with a retry button.
+  // TODO: display a toast when save fails, with a retry button.
   onSave(preview) {
     this.onEditEnd();
 
@@ -59,14 +59,15 @@ class PreviewListItem extends Component {
     const { isEditing } = this.state;
 
     const item = {
-      key: preview.id,
       title: <a target={'_blank'} href={preview.url}>{preview.name}</a>,
       content: <a target={'_blank'} href={preview.url}>{preview.comment}</a>,
     };
 
-    return isEditing ? (
-      <PreviewForm preview={preview} onSave={this.onSave} />
-    ) : (
+    if (isEditing) {
+      return <PreviewForm preview={preview} onSave={this.onSave} />;
+    }
+
+    return (
       <ListItem
         item={item}
         strip={<PreviewStatus status={preview.status} />}

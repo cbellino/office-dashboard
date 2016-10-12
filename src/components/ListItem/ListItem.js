@@ -3,9 +3,12 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './ListItem.css';
 
 const propTypes = {
-  item: PropTypes.shape({}).isRequired,
   avatar: PropTypes.node,
   strip: PropTypes.node,
+  item: PropTypes.shape({
+    title: PropTypes.node.isRequired,
+    content: PropTypes.node.isRequired,
+  }).isRequired,
   actions: PropTypes.arrayOf(PropTypes.node),
 };
 

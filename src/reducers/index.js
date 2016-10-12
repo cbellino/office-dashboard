@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import {
   PREVIEW_UPDATE_REQUESTED,
+  PREVIEW_UPDATE_SUCCEEDED,
   PREVIEWS_FETCH_REQUESTED,
   PREVIEWS_FETCH_SUCCEEDED,
   PREVIEWS_FETCH_FAILED,
@@ -78,12 +79,35 @@ function homeReducer(state = INITIAL_HOME_STATE, action) {
 }
 
 /*
+* Notification reducer.
+*/
+
+function updateNotification(state, notification) {
+  return { ...notification, open: true };
+}
+
+const INITIAL_NOTIFICATION_STATE = {
+  message: '',
+  open: false,
+};
+
+function notificationReducer(state = INITIAL_NOTIFICATION_STATE, action) {
+  switch (action.type) {
+    case PREVIEW_UPDATE_SUCCEEDED:
+      return updateNotification(state, action.payload.notification);
+    default:
+      return state;
+  }
+}
+
+/*
 * Root reducer.
 */
 
 const rootReducer = combineReducers({
   entities: entitiesReducer,
   home: homeReducer,
+  notification: notificationReducer,
 });
 
 export default rootReducer;

@@ -15,7 +15,6 @@ export default {
     let route;
 
     // Execute each child route until one of them return the result
-    // TODO: move this logic to the `next` function
     do {
       route = await next();
     } while (!route);
