@@ -30,7 +30,6 @@ class PreviewListItem extends Component {
     this.onSave = this.onSave.bind(this);
   }
 
-  // TODO: focus the comment field.
   onEditStart() {
     this.setState({ isEditing: true });
   }
@@ -39,7 +38,6 @@ class PreviewListItem extends Component {
     this.setState({ isEditing: false });
   }
 
-  // TODO: dispatch the save action.
   // TODO: display a toast when save success.
   // TODO: display a toast when save fail, with a retry button.
   onSave(preview) {

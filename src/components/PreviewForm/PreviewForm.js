@@ -33,6 +33,10 @@ class PreviewForm extends Component {
     this.onSave = this.onSave.bind(this);
   }
 
+  componentDidMount() {
+    this.commentInput.focus();
+  }
+
   onStatusChange() {
     const status = getInverseStatus(this.state.preview.status);
 
@@ -79,6 +83,7 @@ class PreviewForm extends Component {
             <div className={s.itemTitle}>{preview.name}</div>
             <TextField
               hintText={'Comment'}
+              ref={(c) => { this.commentInput = c; }}
               defaultValue={preview.comment}
               onChange={this.onCommentChange}
               style={commentStyle.style}
