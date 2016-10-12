@@ -37,7 +37,9 @@ export function fetchPreviews() {
 function updatePreviewRequest(preview) {
   return {
     type: PREVIEW_UPDATE_REQUESTED,
-    payload: { preview },
+    payload: {
+      entities: { previews: { [preview.id]: preview } },
+    },
   };
 }
 
@@ -56,7 +58,7 @@ export function updatePreview(preview) {
   return (dispatch) => {
     dispatch(updatePreviewRequest(preview));
 
-    return api.updatePreview(preview)
+    return api.updatePreview(preview.id, preview)
       .then((data) => dispatch(updatePreviewSuccess(data)))
       .catch((error) => dispatch(updatePreviewFailure(error)))
     ;

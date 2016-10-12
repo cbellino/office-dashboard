@@ -6,8 +6,8 @@ const propTypes = {
 };
 
 function PreviewStatus(props) {
-  const status = (props.status !== 'free') ? 'busy' : 'free';
-  const variant = (status === 'busy') ? 'error' : 'success';
+  const status = (props.status !== 'FREE') ? 'BUSY' : 'FREE';
+  const variant = (status === 'BUSY') ? 'error' : 'success';
 
   return <Strip variant={variant}>{status}</Strip>;
 }

@@ -1,11 +1,9 @@
-import {
-  GraphQLList as List,
-} from 'graphql';
+import { GraphQLList } from 'graphql';
 import PreviewType from '../types/PreviewType';
 import Preview from '../models/Preview';
 
 const previews = {
-  type: new List(PreviewType),
+  type: new GraphQLList(PreviewType),
   resolve() {
     const query = {
       order: [['id', 'ASC']],

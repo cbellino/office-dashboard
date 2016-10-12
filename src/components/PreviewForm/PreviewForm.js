@@ -16,7 +16,7 @@ const propTypes = {
 };
 
 function getInverseStatus(status) {
-  return (status === 'free') ? 'busy' : 'free';
+  return (status === 'FREE') ? 'BUSY' : 'FREE';
 }
 
 class PreviewForm extends Component {

@@ -1,4 +1,4 @@
-import { model, query } from 'modelizr';
+import { model } from 'modelizr';
 
 export const preview = model('previews', {
   id: { type: 'primary|string' },

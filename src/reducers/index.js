@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import {
+  PREVIEW_UPDATE_REQUESTED,
   PREVIEWS_FETCH_REQUESTED,
   PREVIEWS_FETCH_SUCCEEDED,
   PREVIEWS_FETCH_FAILED,
@@ -13,8 +14,11 @@ function logError(state, error) {
 * Entities reducer.
 */
 
+// TODO: use immutable data and refactor this.
 function updateEntities(state, previews) {
-  return Object.assign({}, state, { previews });
+  return Object.assign({}, state, {
+    previews: Object.assign({}, state.previews, previews),
+  });
 }
 
 const INITIAL_ENTITIES_STATE = {
@@ -24,6 +28,7 @@ const INITIAL_ENTITIES_STATE = {
 function entitiesReducer(state = INITIAL_ENTITIES_STATE, action) {
   switch (action.type) {
     case PREVIEWS_FETCH_SUCCEEDED:
+    case PREVIEW_UPDATE_REQUESTED:
       return updateEntities(state, action.payload.entities.previews);
     case PREVIEWS_FETCH_FAILED:
       return logError(state, action.error);
