@@ -5,6 +5,8 @@ import {
   PREVIEWS_FETCH_REQUESTED,
   PREVIEWS_FETCH_SUCCEEDED,
   PREVIEWS_FETCH_FAILED,
+  PREVIEW_EDIT_STARTED,
+  PREVIEW_EDIT_STOPPED,
 } from '../constants/ActionTypes';
 
 function logError(state, error) {
@@ -45,24 +47,39 @@ function entitiesReducer(state = INITIAL_ENTITIES_STATE, action) {
 const INITIAL_HOME_STATE = {
   previews: {
     items: [],
+    states: {},
     isFetching: true,
-    isEditing: null,
   },
 };
 
+const INITIAL_PREVIEW_STATE = {
+  isEditing: false,
+};
+
 function updateHomePreviews(state, items) {
+  const initialStates = Object.assign(...items.map(item => (
+    { [item]: Object.assign({}, INITIAL_PREVIEW_STATE) }
+  )));
+
   return Object.assign({}, state, {
     previews: {
       items,
+      states: Object.assign({}, state.previews.states, initialStates),
       isFetching: false,
-      isEditing: null,
     },
   });
 }
 
 function fetchHomePreviews(state) {
-  const newState = state;
+  const newState = Object.assign({}, state);
   newState.previews.isFetching = true;
+
+  return newState;
+}
+
+function setPreviewState(state, preview, key, value) {
+  const newState = Object.assign({}, state);
+  newState.previews.states[preview.id][key] = value;
 
   return newState;
 }
@@ -73,6 +90,10 @@ function homeReducer(state = INITIAL_HOME_STATE, action) {
       return fetchHomePreviews(state, action.payload);
     case PREVIEWS_FETCH_SUCCEEDED:
       return updateHomePreviews(state, action.payload.result.previews);
+    case PREVIEW_EDIT_STARTED:
+      return setPreviewState(state, action.payload.preview, 'isEditing', true);
+    case PREVIEW_EDIT_STOPPED:
+      return setPreviewState(state, action.payload.preview, 'isEditing', false);
     default:
       return state;
   }

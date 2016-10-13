@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { updatePreview } from '../../actions';
+import { updatePreview, startEditingPreview, stopEditingPreview } from '../../actions';
 import ListItem from '../ListItem';
 import PreviewForm from '../PreviewForm';
 import PreviewStatus from '../PreviewStatus';
@@ -13,7 +13,10 @@ const propTypes = {
     owner: PropTypes.string.isRequired,
     status: PropTypes.string.isRequired,
   }),
+  isEditing: PropTypes.bool.isRequired,
   onSave: PropTypes.func.isRequired,
+  onEditStart: PropTypes.func.isRequired,
+  onEditStop: PropTypes.func.isRequired,
 };
 
 class PreviewListItem extends Component {
@@ -21,27 +24,26 @@ class PreviewListItem extends Component {
   constructor() {
     super();
 
-    this.state = {
-      isEditing: false,
-    };
-
     this.onEditStart = this.onEditStart.bind(this);
-    this.onEditEnd = this.onEditEnd.bind(this);
+    this.onEditStop = this.onEditStop.bind(this);
     this.onSave = this.onSave.bind(this);
   }
 
-  // TODO: store this in state.home.<id>.isEditing
   onEditStart() {
-    this.setState({ isEditing: true });
+    if (this.props.onEditStart) {
+      this.props.onEditStart(this.props.preview);
+    }
   }
 
-  onEditEnd() {
-    this.setState({ isEditing: false });
+  onEditStop() {
+    if (this.props.onEditStop) {
+      this.props.onEditStop(this.props.preview);
+    }
   }
 
   // TODO: display a toast when save fails, with a retry button.
   onSave(preview) {
-    this.onEditEnd();
+    this.onEditStop();
 
     if (this.props.onSave) {
       this.props.onSave(preview);
@@ -55,8 +57,7 @@ class PreviewListItem extends Component {
   }
 
   render() {
-    const { preview } = this.props;
-    const { isEditing } = this.state;
+    const { preview, isEditing } = this.props;
 
     const item = {
       title: <a target={'_blank'} href={preview.url}>{preview.name}</a>,
@@ -82,6 +83,8 @@ PreviewListItem.propTypes = propTypes;
 function mapDispatchToProps(dispatch) {
   return {
     onSave: (preview) => dispatch(updatePreview(preview)),
+    onEditStart: (preview) => dispatch(startEditingPreview(preview)),
+    onEditStop: (preview) => dispatch(stopEditingPreview(preview)),
   };
 }
 

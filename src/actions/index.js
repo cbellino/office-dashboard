@@ -5,6 +5,8 @@ import {
   PREVIEW_UPDATE_REQUESTED,
   PREVIEW_UPDATE_SUCCEEDED,
   PREVIEW_UPDATE_FAILED,
+  PREVIEW_EDIT_STARTED,
+  PREVIEW_EDIT_STOPPED,
 } from '../constants/ActionTypes';
 import * as api from '../data/api';
 
@@ -62,5 +64,19 @@ export function updatePreview(preview) {
       .then((data) => dispatch(updatePreviewSuccess(data)))
       .catch((error) => dispatch(updatePreviewFailure(error)))
     ;
+  };
+}
+
+export function startEditingPreview(preview) {
+  return {
+    type: PREVIEW_EDIT_STARTED,
+    payload: { preview },
+  };
+}
+
+export function stopEditingPreview(preview) {
+  return {
+    type: PREVIEW_EDIT_STOPPED,
+    payload: { preview },
   };
 }

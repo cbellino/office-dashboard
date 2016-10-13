@@ -9,7 +9,9 @@ import s from './Home.css';
 class Home extends Component {
 
   componentDidMount() {
-    this.props.fetchData();
+    if (this.props.fetchData) {
+      this.props.fetchData();
+    }
   }
 
   render() {
