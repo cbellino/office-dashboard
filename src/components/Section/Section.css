@@ -11,3 +11,8 @@
 .container {
 
 }
+
+.loading {
+  padding: 16px;
+  text-align: center;
+}

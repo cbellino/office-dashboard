@@ -12,12 +12,8 @@ function PreviewSection(props) {
   const { previews, isFetching } = props;
 
   return (
-    <Section title={'Previews'}>
-      {isFetching ? (
-        'Loading'
-      ) : (
-        <List items={previews} renderItem={renderItem} />
-      )}
+    <Section title={'Previews'} loading={isFetching}>
+      <List items={previews} renderItem={renderItem} />
     </Section>
   );
 }
