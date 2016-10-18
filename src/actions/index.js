@@ -1,14 +1,15 @@
+import { Map, fromJS } from 'immutable';
+import * as api from '../data/api';
 import {
   PREVIEWS_FETCH_REQUESTED,
   PREVIEWS_FETCH_SUCCEEDED,
   PREVIEWS_FETCH_FAILED,
   PREVIEW_UPDATE_REQUESTED,
-  PREVIEW_UPDATE_SUCCEEDED,
   PREVIEW_UPDATE_FAILED,
   PREVIEW_EDIT_STARTED,
   PREVIEW_EDIT_STOPPED,
+  NOTIFICATION_OPENED,
 } from '../constants/ActionTypes';
-import * as api from '../data/api';
 
 function fetchPreviewsRequest() {
   return { type: PREVIEWS_FETCH_REQUESTED };
@@ -45,10 +46,12 @@ function updatePreviewRequest(preview) {
   };
 }
 
-function updatePreviewSuccess(preview) {
+function updatePreviewSuccessNotification(preview) {
   return {
-    type: PREVIEW_UPDATE_SUCCEEDED,
-    payload: { preview, notification: { message: 'Preview saved.' } },
+    type: NOTIFICATION_OPENED,
+    payload: {
+      notification: Map({ message: `${preview.get('name')} saved.` }),
+    },
   };
 }
 
@@ -61,7 +64,9 @@ export function updatePreview(preview) {
     dispatch(updatePreviewRequest(preview));
 
     return api.updatePreview(preview.id, preview)
-      .then((data) => dispatch(updatePreviewSuccess(data)))
+      .then(() => {
+        dispatch(updatePreviewSuccessNotification(fromJS(preview)));
+      })
       .catch((error) => dispatch(updatePreviewFailure(error)))
     ;
   };

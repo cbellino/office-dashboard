@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Section from '../components/Section';
 import List from '../components/List';
@@ -16,24 +16,17 @@ function renderItem(preview, states) {
   );
 }
 
-class PreviewSection extends Component {
+function PreviewSection() {
+  const { previews, states, isFetching } = this.props;
 
-  shouldComponentUpdate() {
-    return true;
-  }
-
-  render() {
-    const { previews, states, isFetching } = this.props;
-
-    return (
-      <Section title={'Previews'} loading={isFetching}>
-        <List
-          items={previews}
-          renderItem={(preview) => renderItem(preview, states)}
-        />
-      </Section>
-    );
-  }
+  return (
+    <Section title={'Previews'} loading={isFetching}>
+      <List
+        items={previews}
+        renderItem={(preview) => renderItem(preview, states)}
+      />
+    </Section>
+  );
 }
 
 PreviewSection.propTypes = {
@@ -51,15 +44,16 @@ PreviewSection.propTypes = {
 };
 
 function mapStateToProps(state) {
-  const { home, entities } = state;
   const {
     isFetching,
     items = [],
     states,
-  } = home.previews;
+  } = state.getIn(['home', 'previews']).toJS();
 
   return {
-    previews: items.map((id) => entities.previews[id]),
+    previews: isFetching ? [] : items.map((item) =>
+      state.getIn(['entities', 'previews', item]).toJS()
+    ),
     states,
     isFetching,
   };

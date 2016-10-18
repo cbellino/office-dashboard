@@ -1,11 +1,13 @@
-import { combineReducers, createStore, compose, applyMiddleware } from 'redux';
+import { createStore, compose, applyMiddleware } from 'redux';
+import { combineReducers } from 'redux-immutable';
+import { Map } from 'immutable';
 import thunk from 'redux-thunk';
 import promise from 'redux-promise';
-import rootReducer from '../reducers';
+import * as reducers from '../reducers';
 
-const INITIAL_STATE = {};
+const INITIAL_STATE = Map();
 
-export default function configureStore(history, initialState = INITIAL_STATE) {
+export default function configureStore(initialState = INITIAL_STATE) {
   const composeEnhancers = (
     process.env.NODE_ENV !== 'production' &&
     typeof window === 'object' &&
@@ -15,8 +17,9 @@ export default function configureStore(history, initialState = INITIAL_STATE) {
   const enhancer = composeEnhancers(
     applyMiddleware(thunk, promise),
   );
+  const reducer = combineReducers(reducers);
   const store = {
-    ...createStore(rootReducer, initialState, enhancer),
+    ...createStore(reducer, initialState, enhancer),
   };
 
   // Enable Webpack hot module replacement for reducers

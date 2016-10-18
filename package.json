@@ -35,8 +35,10 @@
     "query-string": "4.2.3",
     "react": "15.3.2",
     "react-dom": "15.3.2",
+    "react-immutable-proptypes": "^2.1.0",
     "react-redux": "^4.4.5",
     "redux": "^3.6.0",
+    "redux-immutable": "^3.0.8",
     "redux-promise": "^0.5.3",
     "redux-thunk": "^2.1.0",
     "sequelize": "3.24.3",
@@ -145,7 +147,16 @@
       "react/forbid-prop-types": "off",
       "react/jsx-filename-extension": "off",
       "react/no-danger": "off",
-      "react/no-unused-prop-types": "off"
+      "react/no-unused-prop-types": "off",
+      "new-cap": [
+        2,
+        {
+          "capIsNewExceptions": [
+            "Map",
+            "List"
+          ]
+        }
+      ]
     }
   },
   "stylelint": {

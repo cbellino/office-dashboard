@@ -112,7 +112,7 @@ app.get('*', async (req, res, next) => {
     }
 
     const data = { ...route };
-    data.children = ReactDOM.renderToString(<App context={context}>{route.component}</App>);
+    // data.children = ReactDOM.renderToString(<App context={context}>{route.component}</App>);
     data.style = [...css].join('');
     data.script = assets.main.js;
     const html = ReactDOM.renderToStaticMarkup(<Html {...data} />);
@@ -139,7 +139,7 @@ app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
       description={err.message}
       style={errorPageStyle._getCss()} // eslint-disable-line no-underscore-dangle
     >
-      { /* ReactDOM.renderToString(<ErrorPageWithoutStyle error={err} />) */ }
+      { ReactDOM.renderToString(<ErrorPageWithoutStyle error={err} />) }
     </Html>
   );
   res.status(err.status || 500);
