@@ -5,6 +5,7 @@ import {
   PREVIEWS_FETCH_SUCCEEDED,
   PREVIEWS_FETCH_FAILED,
   PREVIEW_UPDATE_REQUESTED,
+  PREVIEW_UPDATE_SUCCEEDED,
   PREVIEW_UPDATE_FAILED,
   PREVIEW_EDIT_STARTED,
   PREVIEW_EDIT_STOPPED,
@@ -46,11 +47,19 @@ function updatePreviewRequest(preview) {
   };
 }
 
+function updatePreviewSuccess(preview) {
+  return {
+    type: PREVIEW_UPDATE_SUCCEEDED,
+    payload: { preview },
+  };
+}
+
 function updatePreviewSuccessNotification(preview) {
+  console.log('updatePreviewSuccessNotification', preview);
   return {
     type: NOTIFICATION_OPENED,
     payload: {
-      notification: Map({ message: `${preview.get('name')} saved.` }),
+      notification: { message: `${preview.name} saved.` },
     },
   };
 }
@@ -64,8 +73,11 @@ export function updatePreview(preview) {
     dispatch(updatePreviewRequest(preview));
 
     return api.updatePreview(preview.id, preview)
-      .then(() => {
-        dispatch(updatePreviewSuccessNotification(fromJS(preview)));
+      .then((data) => {
+        const updatedPreview = data.entities.previews[preview.id];
+
+        dispatch(updatePreviewSuccess(updatedPreview));
+        dispatch(updatePreviewSuccessNotification(updatedPreview));
       })
       .catch((error) => dispatch(updatePreviewFailure(error)))
     ;

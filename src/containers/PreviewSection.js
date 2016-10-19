@@ -16,8 +16,8 @@ function renderItem(preview, states) {
   );
 }
 
-function PreviewSection() {
-  const { previews, states, isFetching } = this.props;
+function PreviewSection(props) {
+  const { previews, states, isFetching } = props;
 
   return (
     <Section title={'Previews'} loading={isFetching}>
@@ -50,6 +50,7 @@ function mapStateToProps(state) {
     states,
   } = state.getIn(['home', 'previews']).toJS();
 
+  // TODO: use immutable data directly and remove the need for toJS()
   return {
     previews: isFetching ? [] : items.map((item) =>
       state.getIn(['entities', 'previews', item]).toJS()

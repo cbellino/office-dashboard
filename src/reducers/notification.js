@@ -19,7 +19,7 @@ const INITIAL_NOTIFICATION_STATE = Map({
 function notificationReducer(state = INITIAL_NOTIFICATION_STATE, action) {
   switch (action.type) {
     case NOTIFICATION_OPENED:
-      return updateNotification(state, action.payload.notification);
+      return updateNotification(state, Map(action.payload.notification));
     default:
       return state;
   }

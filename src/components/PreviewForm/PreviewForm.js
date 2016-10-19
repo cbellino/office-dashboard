@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import TextField from 'material-ui/TextField';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import PreviewStatus from '../PreviewStatus';
+import { getInverseStatus } from '../../data/utils/previews';
 import s from './PreviewForm.css';
 
 const propTypes = {
@@ -14,10 +15,6 @@ const propTypes = {
   }),
   onSave: PropTypes.func.isRequired,
 };
-
-function getInverseStatus(status) {
-  return (status === 'FREE') ? 'BUSY' : 'FREE';
-}
 
 class PreviewForm extends Component {
 

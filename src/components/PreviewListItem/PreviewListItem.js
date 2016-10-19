@@ -4,6 +4,7 @@ import { updatePreview, startEditingPreview, stopEditingPreview } from '../../ac
 import ListItem from '../ListItem';
 import PreviewForm from '../PreviewForm';
 import PreviewStatus from '../PreviewStatus';
+import { getEmptyPreview } from '../../data/utils/previews';
 
 const propTypes = {
   preview: PropTypes.shape({
@@ -26,6 +27,7 @@ class PreviewListItem extends Component {
 
     this.onEditStart = this.onEditStart.bind(this);
     this.onEditStop = this.onEditStop.bind(this);
+    this.onClear = this.onClear.bind(this);
     this.onSave = this.onSave.bind(this);
   }
 
@@ -41,6 +43,12 @@ class PreviewListItem extends Component {
     }
   }
 
+  onClear() {
+    if (this.props.onSave) {
+      this.props.onSave(getEmptyPreview(this.props.preview.id));
+    }
+  }
+
   // TODO: display a toast when save fails, with a retry button.
   onSave(preview) {
     this.onEditStop();
@@ -52,6 +60,7 @@ class PreviewListItem extends Component {
 
   renderActions() {
     return [
+      <button key={'clear'} onClick={this.onClear}>Clear</button>,
       <button key={'edit'} onClick={this.onEditStart}>Edit</button>,
     ];
   }
@@ -65,7 +74,13 @@ class PreviewListItem extends Component {
     };
 
     if (isEditing) {
-      return <PreviewForm preview={preview} onSave={this.onSave} />;
+      return (
+        <PreviewForm
+          preview={preview}
+          onSave={this.onSave}
+          onClear={this.onClear}
+        />
+      );
     }
 
     return (
