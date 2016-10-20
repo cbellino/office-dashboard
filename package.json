@@ -34,6 +34,7 @@
     "normalize.css": "5.0.0",
     "passport": "0.3.2",
     "passport-facebook": "2.1.1",
+    "pb": "^0.3.0",
     "pretty-error": "2.0.2",
     "query-string": "4.2.3",
     "react": "15.3.2",
