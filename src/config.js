@@ -47,8 +47,14 @@ export const auth = {
 
 };
 
+export const heroku = {
+
+  name: process.env.HEROKU_NAME,
+
+};
+
 export const graphql = {
 
-  url: 'http://localhost:3001/graphql',
+  url: '/graphql',
 
 };

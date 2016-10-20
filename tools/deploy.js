@@ -1,22 +1,13 @@
-/**
- * React Starter Kit (https://www.reactstarterkit.com/)
- *
- * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE.txt file in the root directory of this source tree.
- */
-
 import GitRepo from 'git-repository';
 import run from './run';
 import fetch from './lib/fetch';
+import { heroku } from '../src/config';
 
-// TODO: Update deployment URL
 // For more information visit http://gitolite.com/deploy.html
 const getRemote = (slot) => ({
   name: slot || 'production',
-  url: `https://example${slot ? `-${slot}` : ''}.scm.azurewebsites.net:443/example.git`,
-  website: `http://example${slot ? `-${slot}` : ''}.azurewebsites.net`,
+  url: `https://git.heroku.com/${heroku.name}${slot ? `-${slot}` : ''}.git`,
+  website: `http://${heroku.name}${slot ? `-${slot}` : ''}.herokuapp.com/`,
 });
 
 /**

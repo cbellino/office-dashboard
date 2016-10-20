@@ -55,7 +55,6 @@ function updatePreviewSuccess(preview) {
 }
 
 function updatePreviewSuccessNotification(preview) {
-  console.log('updatePreviewSuccessNotification', preview);
   return {
     type: NOTIFICATION_OPENED,
     payload: {
