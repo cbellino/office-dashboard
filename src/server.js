@@ -9,7 +9,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/server';
 import UniversalRouter from 'universal-router';
 import PrettyError from 'pretty-error';
-// import App from './components/App';
+import App from './components/App';
 import Html from './components/Html';
 import { ErrorPageWithoutStyle } from './routes/error/ErrorPage';
 import errorPageStyle from './routes/error/ErrorPage.css';
@@ -79,7 +79,7 @@ app.get('*', async (req, res, next) => {
     }
 
     const data = { ...route };
-    // data.children = ReactDOM.renderToString(<App context={context}>{route.component}</App>);
+    data.children = ReactDOM.renderToString(<App context={context}>{route.component}</App>);
     data.style = [...css].join('');
     data.script = assets.main.js;
     const html = ReactDOM.renderToStaticMarkup(<Html {...data} />);
