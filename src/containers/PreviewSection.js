@@ -24,6 +24,7 @@ function PreviewSection(props) {
       <List
         items={previews}
         renderItem={(preview) => renderItem(preview, states)}
+        empty={<div>{'No previews :('}</div>}
       />
     </Section>
   );

@@ -5,6 +5,7 @@ import s from './List.css';
 const propTypes = {
   items: PropTypes.array.isRequired,
   renderItem: PropTypes.func.isRequired,
+  empty: PropTypes.node.isRequired,
 };
 
 // TODO: display the owner
@@ -12,13 +13,11 @@ const propTypes = {
 // TODO: display column names
 // TODO: order by
 function List(props) {
-  const { items, renderItem } = props;
+  const { items, renderItem, empty } = props;
 
   return (
     <div className={s.root}>
-      <div className={s.container}>
-        {items.map(renderItem)}
-      </div>
+      {items.length > 0 ? items.map(renderItem) : <div className={s.empty}>{empty}</div>}
     </div>
   );
 }

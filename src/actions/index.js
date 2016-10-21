@@ -1,4 +1,3 @@
-import { Map, fromJS } from 'immutable';
 import * as api from '../data/api';
 import {
   PREVIEWS_FETCH_REQUESTED,
