@@ -49,16 +49,12 @@ class PreviewForm extends Component {
     });
   }
 
-  onSave() {
+  onSave(e) {
+    e.preventDefault();
+
     if (this.props.onSave) {
       this.props.onSave(this.state.preview);
     }
-  }
-
-  renderActions() {
-    return [
-      <button key={'save'} className={s.action} onClick={this.onSave}>Save</button>,
-    ];
   }
 
   render() {
@@ -68,30 +64,33 @@ class PreviewForm extends Component {
       style: { width: '100%' },
       underlineStyle: { borderColor: '#009cb7' },
     };
+    const actions = [
+      <button key={'save'} type={'submit'} className={s.action}>Save</button>,
+    ];
 
     return (
-      <div className={s.root}>
+      <form className={s.root} onSubmit={this.onSave}>
         <div className={s.container}>
           <div className={s.status}>
-            <button onClick={this.onStatusChange} className={s.statusButton}>
+            <button type={'button'} onClick={this.onStatusChange} className={s.statusButton}>
               <PreviewStatus status={preview.status} />
             </button>
           </div>
           <div className={s.content}>
             <div className={s.itemTitle}>{preview.name}</div>
             <TextField
-              hintText={'Comment'}
               ref={(c) => { this.commentInput = c; }}
+              floatingLabelText={'Comment'}
+              floatingLabelFixed
               defaultValue={preview.comment}
               onChange={this.onCommentChange}
               style={commentStyle.style}
               underlineStyle={commentStyle.underlineStyle}
-              multiLine
             />
           </div>
-          <div className={s.actions}>{this.renderActions()}</div>
+          <div className={s.actions}>{actions}</div>
         </div>
-      </div>
+      </form>
     );
   }
 }

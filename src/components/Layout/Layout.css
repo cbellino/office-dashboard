@@ -41,7 +41,7 @@ body,
   width: 100%;
 }
 
-@media all and (min-width: 600px) and (orientation: portrait) {
+@media all and (min-width: 600px) {
   [data-reactroot] {
     flex-direction: row;
   }

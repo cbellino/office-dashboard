@@ -22,6 +22,7 @@
   cursor: pointer;
   transition: box-shadow 200ms ease-in, translate 200ms ease-in;
   outline: none;
+  line-height: 1;
 }
 
 .statusButton:hover {

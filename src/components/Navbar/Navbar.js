@@ -7,7 +7,7 @@ function Navbar() {
   return (
     <div className={s.root}>
       <div className={s.container}>
-        <Avatar>CB</Avatar>
+        <Avatar>AYL</Avatar>
       </div>
     </div>
   );

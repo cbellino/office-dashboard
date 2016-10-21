@@ -1,6 +1,7 @@
 // import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 import FastClick from 'fastclick';
 import UniversalRouter from 'universal-router';
 import queryString from 'query-string';
@@ -96,6 +97,9 @@ let onRenderComplete = function initialRenderComplete() {
     }
   };
 };
+
+// Needed for onTouchTap
+injectTapEventPlugin();
 
 // Make taps on links and buttons work fast on mobiles
 FastClick.attach(document.body);

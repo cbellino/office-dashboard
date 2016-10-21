@@ -4,15 +4,19 @@
   --brand-color: #61dafb;
 }
 
-.root {
-  background: #000000;
-  color: #ffffff;
-}
-
-@media all and (min-width: 600px) and (orientation: portrait) {
+@media all and (min-width: 600px) {
   .root {
     width: 56px;
   }
+
+  .container {
+    padding: 8px 16px;
+  }
+}
+
+.root {
+  background: #000000;
+  color: #ffffff;
 }
 
 .container {

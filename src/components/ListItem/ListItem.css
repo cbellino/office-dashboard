@@ -7,7 +7,6 @@
   padding: 16px 0 0;
   min-height: 56px;
   margin-bottom: 12px;
-  border-top: 1px solid #e0e0e0;
 }
 
 .root:hover .action {
@@ -62,8 +61,6 @@
   align-content: flex-end;
   align-items: flex-start;
   justify-content: flex-end;
-  width: var(--list-item-actions-width);
-  min-width: var(--list-item-actions-width);
 }
 
 .action {
@@ -77,5 +74,4 @@
   background: 0;
   padding: 4px 8px;
   cursor: pointer;
-  /*display: none;*/
 }
