@@ -35,6 +35,9 @@
 
 .content {
   composes: content from '../ListItem/ListItem.css';
+
+  padding-right: 16px;
+  padding-left: 16px;
 }
 
 .spacer {

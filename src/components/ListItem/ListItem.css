@@ -25,6 +25,7 @@
 }
 
 .status {
+  margin-top: 2px;
   margin-right: 8px;
 }
 
@@ -74,4 +75,5 @@
   background: 0;
   padding: 4px 8px;
   cursor: pointer;
+  outline: none;
 }

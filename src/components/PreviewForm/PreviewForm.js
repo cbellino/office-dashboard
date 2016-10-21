@@ -76,19 +76,20 @@ class PreviewForm extends Component {
               <PreviewStatus status={preview.status} />
             </button>
           </div>
-          <div className={s.content}>
-            <div className={s.itemTitle}>{preview.name}</div>
-            <TextField
-              ref={(c) => { this.commentInput = c; }}
-              floatingLabelText={'Comment'}
-              floatingLabelFixed
-              defaultValue={preview.comment}
-              onChange={this.onCommentChange}
-              style={commentStyle.style}
-              underlineStyle={commentStyle.underlineStyle}
-            />
-          </div>
+          <div className={s.itemTitle}>{preview.name}</div>
+          <div className={s.spacer} />
           <div className={s.actions}>{actions}</div>
+        </div>
+        <div className={s.content}>
+          <TextField
+            ref={(c) => { this.commentInput = c; }}
+            floatingLabelText={'Comment'}
+            floatingLabelFixed
+            defaultValue={preview.comment}
+            onChange={this.onCommentChange}
+            style={commentStyle.style}
+            underlineStyle={commentStyle.underlineStyle}
+          />
         </div>
       </form>
     );
