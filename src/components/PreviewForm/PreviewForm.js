@@ -9,9 +9,10 @@ const propTypes = {
   preview: PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
     comment: PropTypes.string,
-    owner: PropTypes.string.isRequired,
-    status: PropTypes.string.isRequired,
+    owner: PropTypes.string,
+    status: PropTypes.string,
   }),
   onSave: PropTypes.func.isRequired,
 };

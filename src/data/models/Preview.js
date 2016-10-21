@@ -13,6 +13,10 @@ const Preview = Model.define('Preview', {
     type: DataType.STRING(255),
   },
 
+  url: {
+    type: DataType.STRING(255),
+  },
+
   comment: {
     type: DataType.STRING(255),
   },

@@ -10,6 +10,7 @@ const PreviewType = new ObjectType({
   fields: {
     id: { type: new NonNull(ID) },
     name: { type: StringType },
+    url: { type: StringType },
     comment: { type: StringType },
     status: { type: StringType },
     owner: { type: StringType },

@@ -10,9 +10,10 @@ const propTypes = {
   preview: PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
     comment: PropTypes.string,
-    owner: PropTypes.string.isRequired,
-    status: PropTypes.string.isRequired,
+    owner: PropTypes.string,
+    status: PropTypes.string,
   }),
   isEditing: PropTypes.bool.isRequired,
   onSave: PropTypes.func.isRequired,
@@ -70,7 +71,7 @@ class PreviewListItem extends Component {
 
     const item = {
       title: <a target={'_blank'} href={preview.url}>{preview.name}</a>,
-      content: <a target={'_blank'} href={preview.url}>{preview.comment}</a>,
+      content: <a target={'_blank'} href={preview.url}>{preview.comment || 'No comment'}</a>,
     };
 
     if (isEditing) {

@@ -34,9 +34,10 @@ PreviewSection.propTypes = {
   previews: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
     comment: PropTypes.string,
-    owner: PropTypes.string.isRequired,
-    status: PropTypes.string.isRequired,
+    owner: PropTypes.string,
+    status: PropTypes.string,
   })),
   states: PropTypes.objectOf(PropTypes.shape({
     isEditing: PropTypes.bool,
