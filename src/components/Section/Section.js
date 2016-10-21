@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import CircularProgress from 'material-ui/CircularProgress';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Section.css';
 
@@ -17,7 +16,7 @@ function Section(props) {
       <h2 className={s.title}>{title}</h2>
       {loading ? (
         <div className={s.loading}>
-          <CircularProgress size={80} thickness={5} />
+          {'Loading...'}
         </div>
       ) : (
         <div className={s.container}>{children}</div>
