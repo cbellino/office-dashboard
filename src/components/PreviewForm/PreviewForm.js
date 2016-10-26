@@ -3,6 +3,8 @@
 import React, { Component, PropTypes } from 'react';
 import TextField from 'material-ui/TextField';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
+import IconButton from 'material-ui/IconButton';
+import SaveIcon from 'material-ui/svg-icons/navigation/check';
 import PreviewStatus from '../PreviewStatus';
 import { previewStatus, getInverseStatus } from '../../data/utils/previews';
 import s from './PreviewForm.css';
@@ -78,7 +80,7 @@ class PreviewForm extends Component {
       underlineStyle: { borderColor: '#009cb7' },
     };
     const actions = [
-      <button key={'save'} type={'submit'} className={s.action}>Save</button>,
+      <IconButton key={'save'} type={'submit'} className={s.action} tooltip={'Save'}><SaveIcon /></IconButton>,
     ];
 
     return (

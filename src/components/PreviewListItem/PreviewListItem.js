@@ -2,6 +2,9 @@
 
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import IconButton from 'material-ui/IconButton';
+import ClearIcon from 'material-ui/svg-icons/action/settings-backup-restore';
+import EditIcon from 'material-ui/svg-icons/image/edit';
 import { updatePreview, startEditingPreview, stopEditingPreview } from '../../actions';
 import ListItem from '../ListItem';
 import PreviewForm from '../PreviewForm';
@@ -68,8 +71,8 @@ class PreviewListItem extends Component {
 
   renderActions() {
     return [
-      <button key={'clear'} onClick={this.onClear}>Clear</button>,
-      <button key={'edit'} onClick={this.onEditStart}>Edit</button>,
+      <IconButton key={'clear'} tooltip="Clear" onClick={this.onClear}><ClearIcon /></IconButton>,
+      <IconButton key={'edit'} tooltip="Edit" onClick={this.onEditStart}><EditIcon /></IconButton>,
     ];
   }
 
