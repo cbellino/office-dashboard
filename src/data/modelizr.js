@@ -1,3 +1,5 @@
+/* @flow */
+
 import { model } from 'modelizr';
 
 export const preview = model('previews', {

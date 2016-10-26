@@ -1,3 +1,4 @@
+/* @flow */
 /* eslint-disable global-require */
 
 // The top-level (parent) route
@@ -11,7 +12,7 @@ export default {
     require('./notFound').default,
   ],
 
-  async action({ next }) {
+  async action({ next }: { next: () => any }) {
     let route;
 
     // Execute each child route until one of them return the result

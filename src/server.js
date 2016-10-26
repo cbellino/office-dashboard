@@ -1,4 +1,5 @@
-// import 'babel-polyfill';
+/* @flow */
+
 import path from 'path';
 import express from 'express';
 import compression from 'compression';
@@ -16,6 +17,7 @@ import errorPageStyle from './routes/error/ErrorPage.css';
 import models from './data/models';
 import schema from './data/schema';
 import routes from './routes';
+// $FlowFixMe: suppressing this error because this is only understood by webpack
 import assets from './assets'; // eslint-disable-line import/no-unresolved
 import { port } from './config';
 import configureStore from './store/configureStore';
@@ -53,7 +55,7 @@ app.use('/graphql', expressGraphQL(req => ({
 // -----------------------------------------------------------------------------
 app.get('*', async (req, res, next) => {
   try {
-    const css = new Set();
+    const css = [];
 
     // Global (context) variables that can be easily accessed from any React component
     // https://facebook.github.io/react/docs/context.html
@@ -62,7 +64,7 @@ app.get('*', async (req, res, next) => {
       // https://github.com/kriasoft/isomorphic-style-loader
       insertCss: (...styles) => {
         // eslint-disable-next-line no-underscore-dangle
-        styles.forEach(style => css.add(style._getCss()));
+        styles.forEach(style => css.push(style._getCss()));
       },
       // TODO: initial state
       store: configureStore(),

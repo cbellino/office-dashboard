@@ -1,7 +1,2 @@
 [ignore]
-.*/build
-.*/config
-.*/node_modules
-.*/gulpfile.js
-
-[include]
+<PROJECT_ROOT>/node_modules/react-tap-event-plugin/**/*

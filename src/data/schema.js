@@ -1,3 +1,5 @@
+/* @flow */
+
 import {
   GraphQLSchema as Schema,
   GraphQLObjectType as ObjectType,

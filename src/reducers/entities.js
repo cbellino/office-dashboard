@@ -21,7 +21,6 @@ function updateEntity(state, type, entity) {
 
 const INITIAL_ENTITIES_STATE = Map({
   previews: Map(),
-  someOtherEntities: Map(),
 });
 
 function entitiesReducer(state = INITIAL_ENTITIES_STATE, action) {

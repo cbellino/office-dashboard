@@ -1,6 +1,10 @@
+/* @flow */
+
 import { query, mutation } from 'modelizr';
 import { graphql } from '../config.js';
 import { preview } from '../data/modelizr';
+
+import type { Preview } from '../types';
 
 export async function fetchPreviews() {
   const result = await query(preview())
@@ -14,7 +18,7 @@ export async function fetchPreviews() {
   return result;
 }
 
-export async function updatePreview(id, { status, comment }) {
+export async function updatePreview(id: string, { status, comment }: Preview) {
   const result = await mutation(
     preview()
     .as('updatePreview')

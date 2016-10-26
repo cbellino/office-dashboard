@@ -49,6 +49,7 @@ function mergePreviewState(state, preview, previewState) {
  * Sends a notification when the previews failed to load.
  */
 function fetchHomePreviewsFailureNotification() {
+  // TODO: move to actions
   return {
     type: NOTIFICATION_OPENED,
     payload: {

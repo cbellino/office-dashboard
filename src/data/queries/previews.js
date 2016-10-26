@@ -1,3 +1,5 @@
+/* @flow */
+
 import { GraphQLList } from 'graphql';
 import PreviewType from '../types/PreviewType';
 import Preview from '../models/Preview';

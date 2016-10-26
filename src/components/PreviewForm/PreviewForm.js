@@ -1,9 +1,13 @@
+/* @flow */
+
 import React, { Component, PropTypes } from 'react';
 import TextField from 'material-ui/TextField';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import PreviewStatus from '../PreviewStatus';
 import { getInverseStatus } from '../../data/utils/previews';
 import s from './PreviewForm.css';
+
+import type { Preview } from '../../types';
 
 const propTypes = {
   preview: PropTypes.shape({
@@ -30,6 +34,14 @@ class PreviewForm extends Component {
     this.onCommentChange = this.onCommentChange.bind(this);
     this.onSave = this.onSave.bind(this);
   }
+
+  state: {
+    preview: Preview,
+  };
+  onStatusChange: () => void; // eslint-disable-line react/sort-comp
+  onCommentChange: () => void;
+  onSave: (e: Event) => void;
+  commentInput: TextField;
 
   componentDidMount() {
     this.commentInput.focus();

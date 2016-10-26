@@ -1,3 +1,5 @@
+/* @flow */
+
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { updatePreview, startEditingPreview, stopEditingPreview } from '../../actions';
@@ -31,6 +33,11 @@ class PreviewListItem extends Component {
     this.onClear = this.onClear.bind(this);
     this.onSave = this.onSave.bind(this);
   }
+
+  onEditStart: () => void;
+  onEditStop: () => void;
+  onClear: () => void;
+  onSave: () => void;
 
   onEditStart() {
     if (this.props.onEditStart) {

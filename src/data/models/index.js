@@ -1,7 +1,9 @@
+/* @flow */
+
 import sequelize from '../sequelize';
 import Preview from './Preview';
 
-function sync(...args) {
+function sync(...args: any[]) {
   return sequelize.sync(...args);
 }
 

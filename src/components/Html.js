@@ -1,16 +1,17 @@
-/**
- * React Starter Kit (https://www.reactstarterkit.com/)
- *
- * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE.txt file in the root directory of this source tree.
- */
+/* @flow */
 
 import React, { PropTypes } from 'react';
 import { analytics } from '../config';
 
-function Html({ title, description, style, script, children }) {
+type HtmlProps = {
+  title: string,
+  description: string,
+  style: string,
+  script?: string,
+  children?: string,
+}
+
+function Html({ title, description, style, script, children }: HtmlProps) {
   return (
     <html className="no-js" lang="en">
       <head>

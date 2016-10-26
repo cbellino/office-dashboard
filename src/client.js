@@ -1,6 +1,8 @@
-// import 'babel-polyfill';
+/* @flow */
+
 import React from 'react';
 import ReactDOM from 'react-dom';
+// $FlowFixMe: suppressing this error until we can include this module in flow again.
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import FastClick from 'fastclick';
 import UniversalRouter from 'universal-router';
@@ -28,7 +30,7 @@ function updateTag(tagName, keyName, keyValue, attrName, attrValue) {
   if (node && node.getAttribute(attrName) === attrValue) return;
 
   // Remove and create a new tag in order to make it work with bookmarks in Safari
-  if (node) {
+  if (node && node.parentNode) {
     node.parentNode.removeChild(node);
   }
   if (typeof attrValue === 'string') {
@@ -57,7 +59,9 @@ if (window.history && 'scrollRestoration' in window.history) {
 
 let onRenderComplete = function initialRenderComplete() {
   const elem = document.getElementById('css');
-  if (elem) elem.parentNode.removeChild(elem);
+  if (elem && elem.parentNode) {
+    elem.parentNode.removeChild(elem);
+  }
   onRenderComplete = function renderComplete(route, location) {
     document.title = route.title;
 
@@ -163,6 +167,7 @@ onLocationChange(currentLocation);
 
 // Enable Hot Module Replacement (HMR)
 if (module.hot) {
+  // $FlowFixMe: suppressing this error since this is code used only by webpack on local machines
   module.hot.accept('./routes', () => {
     routes = require('./routes').default; // eslint-disable-line global-require
 
