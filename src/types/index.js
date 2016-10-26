@@ -22,6 +22,13 @@ export type Preview = {
   status: PreviewStatus,
 }
 
+export type User = {
+  id: Id,
+  name: string,
+  displayName: string,
+  avatar: string,
+}
+
 export type SectionState = {
   isEditing: bool,
 }

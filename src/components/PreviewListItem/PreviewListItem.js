@@ -5,11 +5,14 @@ import { connect } from 'react-redux';
 import IconButton from 'material-ui/IconButton';
 import ClearIcon from 'material-ui/svg-icons/action/settings-backup-restore';
 import EditIcon from 'material-ui/svg-icons/image/edit';
+import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import { updatePreview, startEditingPreview, stopEditingPreview } from '../../actions';
 import ListItem from '../ListItem';
 import PreviewForm from '../PreviewForm';
 import PreviewStatus from '../PreviewStatus';
+import Avatar from '../Avatar';
 import { getEmptyPreview } from '../../data/utils/previews';
+import s from './PreviewListItem.css';
 
 const propTypes = {
   preview: PropTypes.shape({
@@ -19,6 +22,12 @@ const propTypes = {
     comment: PropTypes.string,
     owner: PropTypes.string,
     status: PropTypes.string,
+  }),
+  owner: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    displayName: PropTypes.string.isRequired,
+    avatar: PropTypes.string.isRequired,
   }),
   isEditing: PropTypes.bool.isRequired,
   onSave: PropTypes.func.isRequired,
@@ -76,6 +85,20 @@ class PreviewListItem extends Component {
     ];
   }
 
+  renderAvatar() {
+    const { owner } = this.props;
+
+    if (owner) {
+      return (
+        <Avatar className={s.avatar}>
+          <img src={owner.avatar} role={'presentation'} />
+        </Avatar>
+      );
+    }
+
+    return <Avatar />;
+  }
+
   render() {
     const { preview, isEditing } = this.props;
 
@@ -97,7 +120,8 @@ class PreviewListItem extends Component {
     return (
       <ListItem
         item={item}
-        strip={<PreviewStatus status={preview.status} />}
+        avatar={this.renderAvatar()}
+        strip={<PreviewStatus status={preview.status} className={s.status} />}
         actions={this.renderActions()}
       />
     );
@@ -105,6 +129,13 @@ class PreviewListItem extends Component {
 }
 
 PreviewListItem.propTypes = propTypes;
+
+// TODO: move the redux part to a container and keep this component "dumb".
+function mapStateToProps(state, ownProps) {
+  const owner = state.getIn(['entities', 'users', ownProps.preview.owner]);
+
+  return { owner };
+}
 
 function mapDispatchToProps(dispatch) {
   return {
@@ -114,4 +145,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(undefined, mapDispatchToProps)(PreviewListItem);
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(s)(PreviewListItem));

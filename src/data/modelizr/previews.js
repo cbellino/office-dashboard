@@ -2,7 +2,7 @@
 
 import { model } from 'modelizr';
 
-export const preview = model('previews', {
+const preview = model('previews', {
   id: { type: 'primary|string' },
   name: { type: 'string' },
   url: { type: 'string' },
@@ -10,3 +10,5 @@ export const preview = model('previews', {
   owner: { type: 'string' },
   status: { type: 'string' },
 });
+
+export default preview;

@@ -5,6 +5,7 @@ import {
   PREVIEW_UPDATE_REQUESTED,
   PREVIEW_UPDATE_SUCCEEDED,
 } from '../constants/ActionTypes';
+import { previewOwners } from '../data/utils/previews';
 
 /**
  * Updates multiple entities.
@@ -29,6 +30,7 @@ function updateEntity(state, type, entity) {
 
 const INITIAL_ENTITIES_STATE = Map({
   previews: Map(),
+  users: Map(previewOwners), // TODO: get those from the server
 });
 
 function entitiesReducer(state = INITIAL_ENTITIES_STATE, action) {

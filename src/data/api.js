@@ -2,7 +2,7 @@
 
 import { query, mutation } from 'modelizr';
 import { graphql } from '../config.js';
-import { preview } from '../data/modelizr/previews';
+import preview from '../data/modelizr/previews';
 
 import type { Preview } from '../types';
 
@@ -18,11 +18,11 @@ export async function fetchPreviews() {
   return result;
 }
 
-export async function updatePreview(id: string, { status, comment }: Preview) {
+export async function updatePreview(id: string, { status, comment, owner }: Preview) {
   const result = await mutation(
     preview()
     .as('updatePreview')
-    .params({ id, preview: { comment, status } })
+    .params({ id, preview: { comment, status, owner } })
   )
   .query()
   .path(graphql.url)

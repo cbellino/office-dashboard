@@ -1,15 +1,18 @@
 /* @flow */
 
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 import TextField from 'material-ui/TextField';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import IconButton from 'material-ui/IconButton';
 import SaveIcon from 'material-ui/svg-icons/navigation/check';
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
 import PreviewStatus from '../PreviewStatus';
 import { previewStatus, getInverseStatus } from '../../data/utils/previews';
 import s from './PreviewForm.css';
 
-import type { Preview } from '../../types';
+import type { Preview, User } from '../../types';
 
 const propTypes = {
   preview: PropTypes.shape({
@@ -20,6 +23,12 @@ const propTypes = {
     owner: PropTypes.string,
     status: PropTypes.string,
   }),
+  users: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    displayName: PropTypes.string.isRequired,
+    avatar: PropTypes.string.isRequired,
+  })).isRequired,
   onSave: PropTypes.func.isRequired,
 };
 
@@ -34,6 +43,7 @@ class PreviewForm extends Component {
 
     this.onStatusChange = this.onStatusChange.bind(this);
     this.onCommentChange = this.onCommentChange.bind(this);
+    this.onOwnerChange = this.onOwnerChange.bind(this);
     this.onSave = this.onSave.bind(this);
   }
 
@@ -43,6 +53,7 @@ class PreviewForm extends Component {
   };
   onStatusChange: () => void; // eslint-disable-line react/sort-comp
   onCommentChange: () => void;
+  onOwnerChange: () => void;
   onSave: (e: Event) => void;
   commentInput: TextField;
 
@@ -64,6 +75,16 @@ class PreviewForm extends Component {
     });
   }
 
+  onOwnerChange(event, key, value) {
+    if (!value) { return; }
+
+    const owner = this.props.users.find(user => user.id === value);
+
+    this.setState({
+      preview: { ...this.state.preview, owner: owner.id },
+    });
+  }
+
   onSave(e) {
     e.preventDefault();
 
@@ -72,13 +93,53 @@ class PreviewForm extends Component {
     }
   }
 
-  render() {
+  renderComment() {
     const { preview } = this.state;
 
     const commentStyle = {
       style: { width: '100%' },
       underlineStyle: { borderColor: '#009cb7' },
     };
+
+    return (
+      <TextField
+        ref={(c) => { this.commentInput = c; }}
+        floatingLabelText={'Comment'}
+        floatingLabelFixed
+        defaultValue={preview.comment}
+        onChange={this.onCommentChange}
+        style={commentStyle.style}
+        underlineStyle={commentStyle.underlineStyle}
+      />
+    );
+  }
+
+  renderOwner() {
+    const { users }: { users: User[] } = this.props;
+    const { preview } = this.state;
+
+    const ownerStyle = {
+      style: { width: '100%' },
+    };
+
+    return (
+      <SelectField
+        floatingLabelText="Owner"
+        value={preview.owner}
+        onChange={this.onOwnerChange}
+        style={ownerStyle.style}
+      >
+        <MenuItem value={null} />
+        {users.map(user => (
+          <MenuItem key={user.id} value={user.id} primaryText={user.name} />
+        ))}
+      </SelectField>
+    );
+  }
+
+  render() {
+    const { preview } = this.state;
+
     const actions = [
       <IconButton key={'save'} type={'submit'} className={s.action} tooltip={'Save'}><SaveIcon /></IconButton>,
     ];
@@ -96,15 +157,8 @@ class PreviewForm extends Component {
           <div className={s.actions}>{actions}</div>
         </div>
         <div className={s.content}>
-          <TextField
-            ref={(c) => { this.commentInput = c; }}
-            floatingLabelText={'Comment'}
-            floatingLabelFixed
-            defaultValue={preview.comment}
-            onChange={this.onCommentChange}
-            style={commentStyle.style}
-            underlineStyle={commentStyle.underlineStyle}
-          />
+          {this.renderComment()}
+          {this.renderOwner()}
         </div>
       </form>
     );
@@ -113,4 +167,11 @@ class PreviewForm extends Component {
 
 PreviewForm.propTypes = propTypes;
 
-export default withStyles(s)(PreviewForm);
+// TODO: move the redux part to a container and keep this component "dumb".
+function mapStateToProps(state) {
+  const users = Object.values(state.getIn(['entities', 'users']).toJS());
+
+  return { users };
+}
+
+export default connect(mapStateToProps)(withStyles(s)(PreviewForm));

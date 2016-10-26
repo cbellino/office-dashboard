@@ -2,6 +2,7 @@
 
 import React, { PropTypes, cloneElement } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
+import classNames from 'classnames';
 import s from './ListItem.css';
 
 const propTypes = {
@@ -22,12 +23,13 @@ function mergeActionWithLocalProps(action) {
 
 function ListItem(props) {
   const { item, avatar, strip, actions } = props;
+  const statusClass = classNames(s.status, strip.props.className);
 
   return (
     <div className={s.root}>
       <div className={s.container}>
         {avatar ? <div className={s.avatar}>{avatar}</div> : null}
-        {strip ? <div className={s.status}>{strip}</div> : null}
+        {strip ? <div className={statusClass}>{strip}</div> : null}
         <div className={s.content}>
           <div className={s.itemTitle}>{item.title}</div>
           <div className={s.itemContent}>{item.content}</div>
