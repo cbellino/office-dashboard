@@ -1,18 +1,20 @@
 /* @flow */
 
-// import { Map } from 'immutable';
+export const previewStatus = {
+  FREE: 'FREE',
+  BUSY: 'BUSY',
+};
 
 const emptyPreview = {
   owner: '',
   comment: '',
-  status: 'FREE',
+  status: previewStatus.FREE,
 };
 
-// TODO: use immutable data
-export function getEmptyPreview(id: string) {
-  return Object.assign({}, emptyPreview, { id });
+export function getInverseStatus(status: string) {
+  return (status === previewStatus.FREE) ? previewStatus.BUSY : previewStatus.FREE;
 }
 
-export function getInverseStatus(status: string) {
-  return (status === 'FREE') ? 'BUSY' : 'FREE';
+export function getEmptyPreview(id: string) {
+  return Object.assign({}, emptyPreview, { id });
 }

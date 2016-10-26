@@ -74,6 +74,7 @@ export type Action =
     { type: 'PREVIEWS_FETCH_REQUESTED' }
   | { type: 'PREVIEWS_FETCH_SUCCEEDED', payload: FetchPayload }
   | { type: 'PREVIEWS_FETCH_FAILED', error: Error }
+  | { type: 'PREVIEW_UPDATE_REQUESTED', payload: { preview: Preview } }
   | { type: 'PREVIEW_UPDATE_SUCCEEDED', payload: { preview: Preview } }
   | { type: 'NOTIFICATION_OPENED', payload: NotificationPayload }
   | { type: 'PREVIEW_UPDATE_FAILED', error: Error }

@@ -4,7 +4,7 @@ import React, { Component, PropTypes } from 'react';
 import TextField from 'material-ui/TextField';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import PreviewStatus from '../PreviewStatus';
-import { getInverseStatus } from '../../data/utils/previews';
+import { previewStatus, getInverseStatus } from '../../data/utils/previews';
 import s from './PreviewForm.css';
 
 import type { Preview } from '../../types';
@@ -27,7 +27,7 @@ class PreviewForm extends Component {
     super();
 
     this.state = {
-      preview: props.preview,
+      preview: { ...props.preview, status: previewStatus.BUSY },
     };
 
     this.onStatusChange = this.onStatusChange.bind(this);
@@ -35,6 +35,7 @@ class PreviewForm extends Component {
     this.onSave = this.onSave.bind(this);
   }
 
+  // flow types.
   state: {
     preview: Preview,
   };

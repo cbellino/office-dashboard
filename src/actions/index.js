@@ -30,13 +30,16 @@ export function fetchPreviews() {
   };
 }
 
+function updatePreviewRequest(preview): Action {
+  return {
+    type: 'PREVIEW_UPDATE_REQUESTED',
+    payload: { preview },
+  };
+}
+
 function updatePreviewSuccess(preview): Action {
   return {
     type: 'PREVIEW_UPDATE_SUCCEEDED',
-    // TODO: refactor the payload to look like this:
-    // payload: {
-    //   entities: { previews: { [preview.id]: preview } },
-    // },
     payload: { preview },
   };
 }
@@ -55,7 +58,9 @@ function updatePreviewFailure(error): Action {
 }
 
 export function updatePreview(preview: Preview) {
-  return (dispatch: Dispatch) =>
+  return (dispatch: Dispatch) => {
+    dispatch(updatePreviewRequest(preview));
+
     api.updatePreview(preview.id, preview)
       .then((data) => {
         const updatedPreview = data.entities.previews[preview.id];
@@ -64,6 +69,7 @@ export function updatePreview(preview: Preview) {
         dispatch(updatePreviewSuccessNotification(updatedPreview));
       })
       .catch((error) => dispatch(updatePreviewFailure(error)));
+  };
 }
 
 export function startEditingPreview(preview: Preview): Action {
