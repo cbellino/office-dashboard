@@ -2,7 +2,7 @@
 
 import { query, mutation } from 'modelizr';
 import { graphql } from '../config.js';
-import { preview } from '../data/modelizr';
+import { preview } from '../data/modelizr/previews';
 
 import type { Preview } from '../types';
 
