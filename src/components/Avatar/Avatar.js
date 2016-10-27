@@ -2,17 +2,23 @@
 
 import React, { PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
+import classNames from 'classnames';
 import s from './Avatar.css';
 
 const propTypes = {
+  text: PropTypes.string,
   children: PropTypes.node,
+  className: PropTypes.string,
 };
 
 function Avatar(props) {
-  const { children } = props;
+  const { text, children, className } = props;
+  const rootClass = classNames(s.root, className, {
+    [s.hasChildren]: !!children,
+  });
 
   return (
-    <div className={s.root}>{children}</div>
+    <div className={rootClass}>{children || text}</div>
   );
 }
 

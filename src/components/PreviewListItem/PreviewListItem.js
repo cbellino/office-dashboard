@@ -27,7 +27,7 @@ const propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     displayName: PropTypes.string.isRequired,
-    avatar: PropTypes.string.isRequired,
+    avatar: PropTypes.string,
   }),
   isEditing: PropTypes.bool.isRequired,
   onSave: PropTypes.func.isRequired,
@@ -88,15 +88,15 @@ class PreviewListItem extends Component {
   renderAvatar() {
     const { owner } = this.props;
 
-    if (owner) {
-      return (
-        <Avatar className={s.avatar}>
-          <img src={owner.avatar} role={'presentation'} />
-        </Avatar>
-      );
+    if (!owner || !owner.avatar) {
+      return <Avatar text={'P'} />;
     }
 
-    return <Avatar />;
+    return (
+      <Avatar className={s.avatar}>
+        <img src={owner.avatar} role={'presentation'} />
+      </Avatar>
+    );
   }
 
   render() {
@@ -112,7 +112,6 @@ class PreviewListItem extends Component {
         <PreviewForm
           preview={preview}
           onSave={this.onSave}
-          onClear={this.onClear}
         />
       );
     }

@@ -9,7 +9,7 @@ function Navbar() {
   return (
     <div className={s.root}>
       <div className={s.container}>
-        <Avatar>AYL</Avatar>
+        <Avatar text={'AYL'} />
       </div>
     </div>
   );

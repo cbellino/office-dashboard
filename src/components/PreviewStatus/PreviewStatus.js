@@ -13,8 +13,8 @@ const propTypes = {
 };
 
 type Props = {
-  status: PreviewStatusType,
-  className: string,
+  status?: PreviewStatusType,
+  className?: string,
 };
 
 function PreviewStatus(props: Props) {

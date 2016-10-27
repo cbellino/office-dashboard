@@ -9,6 +9,7 @@ import SaveIcon from 'material-ui/svg-icons/navigation/check';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import PreviewStatus from '../PreviewStatus';
+import Avatar from '../Avatar';
 import { previewStatus, getInverseStatus } from '../../data/utils/previews';
 import s from './PreviewForm.css';
 
@@ -27,8 +28,9 @@ const propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     displayName: PropTypes.string.isRequired,
-    avatar: PropTypes.string.isRequired,
+    avatar: PropTypes.string,
   })).isRequired,
+  avatar: PropTypes.node,
   onSave: PropTypes.func.isRequired,
 };
 
@@ -61,6 +63,10 @@ class PreviewForm extends Component {
     this.commentInput.focus();
   }
 
+  getOwner(ownerId) {
+    return this.props.users.find(user => user.id === ownerId);
+  }
+
   onStatusChange() {
     const status = getInverseStatus(this.state.preview.status);
 
@@ -78,7 +84,7 @@ class PreviewForm extends Component {
   onOwnerChange(event, key, value) {
     if (!value) { return; }
 
-    const owner = this.props.users.find(user => user.id === value);
+    const owner = this.getOwner(value);
 
     this.setState({
       preview: { ...this.state.preview, owner: owner.id },
@@ -137,6 +143,21 @@ class PreviewForm extends Component {
     );
   }
 
+  renderAvatar() {
+    const { preview } = this.state;
+    const owner = this.getOwner(preview.owner);
+
+    if (!owner || !owner.avatar) {
+      return <Avatar className={s.avatar} text={'P'} />;
+    }
+
+    return (
+      <Avatar className={s.avatar}>
+        <img src={owner.avatar} role={'presentation'} />
+      </Avatar>
+    );
+  }
+
   render() {
     const { preview } = this.state;
 
@@ -147,6 +168,7 @@ class PreviewForm extends Component {
     return (
       <form className={s.root} onSubmit={this.onSave}>
         <div className={s.container}>
+          {this.renderAvatar()}
           <div className={s.status}>
             <button type={'button'} onClick={this.onStatusChange} className={s.statusButton}>
               <PreviewStatus status={preview.status} />

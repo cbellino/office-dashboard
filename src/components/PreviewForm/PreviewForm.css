@@ -10,8 +10,12 @@
   composes: container from '../ListItem/ListItem.css';
 }
 
+.avatar {
+  composes: avatar from '../ListItem/ListItem.css';
+}
+
 .status {
-  composes: status from '../ListItem/ListItem.css';
+  composes: status from '../PreviewListItem/PreviewListItem.css';
 }
 
 .statusButton {
