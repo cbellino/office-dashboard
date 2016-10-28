@@ -97,7 +97,8 @@ app.get('*', async (req, res, next) => {
 
       res.status(route.status || 200);
       res.send(`<!doctype html>${html}`);
-    });
+    })
+    .catch(error => next(error));
   } catch (err) {
     next(err);
   }
