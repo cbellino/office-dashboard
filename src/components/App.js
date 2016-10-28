@@ -7,6 +7,7 @@ const ContextType = {
   // https://github.com/kriasoft/isomorphic-style-loader
   insertCss: PropTypes.func.isRequired,
   store: PropTypes.object.isRequired,
+  userAgent: PropTypes.string.isRequired,
 };
 
 /**

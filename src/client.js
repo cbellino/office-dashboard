@@ -8,22 +8,10 @@ import FastClick from 'fastclick';
 import UniversalRouter from 'universal-router';
 import queryString from 'query-string';
 import { createPath } from 'history/PathUtils';
+import transit from 'transit-immutable-js';
 import history from './core/history';
 import App from './components/App';
 import configureStore from './store/configureStore';
-
-// Global (context) variables that can be easily accessed from any React component
-// https://facebook.github.io/react/docs/context.html
-const context = {
-  // Enables critical path CSS rendering
-  // https://github.com/kriasoft/isomorphic-style-loader
-  insertCss: (...styles) => {
-    // eslint-disable-next-line no-underscore-dangle
-    const removeCss = styles.map(x => x._insertCss());
-    return () => { removeCss.forEach(f => f()); };
-  },
-  store: configureStore(),
-};
 
 function updateTag(tagName, keyName, keyValue, attrName, attrValue) {
   const node = document.head.querySelector(`${tagName}[${keyName}="${keyValue}"]`);
@@ -124,6 +112,23 @@ async function onLocationChange(location) {
     delete scrollPositionsHistory[location.key];
   }
   currentLocation = location;
+
+  const initialState = transit.fromJSON(window.__INITIAL_STATE__); // eslint-disable-line no-underscore-dangle, max-len
+  const store = configureStore(initialState);
+
+  // Global (context) variables that can be easily accessed from any React component
+  // https://facebook.github.io/react/docs/context.html
+  const context = {
+    // Enables critical path CSS rendering
+    // https://github.com/kriasoft/isomorphic-style-loader
+    insertCss: (...styles) => {
+      // eslint-disable-next-line no-underscore-dangle
+      const removeCss = styles.map(x => x._insertCss());
+      return () => { removeCss.forEach(f => f()); };
+    },
+    store,
+    userAgent: navigator.userAgent,
+  };
 
   try {
     // Traverses the list of routes in the order they are defined until

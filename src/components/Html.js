@@ -9,9 +9,10 @@ type HtmlProps = {
   style: string,
   script?: string,
   children?: string,
+  initialState?: any,
 }
 
-function Html({ title, description, style, script, children }: HtmlProps) {
+function Html({ title, description, style, script, children, initialState }: HtmlProps) {
   return (
     <html className="no-js" lang="en">
       <head>
@@ -22,6 +23,13 @@ function Html({ title, description, style, script, children }: HtmlProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="apple-touch-icon" href="apple-touch-icon.png" />
         {style && <style id="css" dangerouslySetInnerHTML={{ __html: style }} />}
+        {initialState ? (
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `window.__INITIAL_STATE__ = '${initialState}';`,
+            }}
+          />
+        ) : null}
       </head>
       <body>
         <div id="app" dangerouslySetInnerHTML={{ __html: children }} />

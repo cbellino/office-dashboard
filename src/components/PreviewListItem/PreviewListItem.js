@@ -24,9 +24,9 @@ const propTypes = {
     status: PropTypes.string,
   }),
   owner: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    displayName: PropTypes.string.isRequired,
+    id: PropTypes.string,
+    name: PropTypes.string,
+    displayName: PropTypes.string,
     avatar: PropTypes.string,
   }),
   isEditing: PropTypes.bool.isRequired,

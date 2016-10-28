@@ -4,7 +4,7 @@
 export const port = process.env.PORT || 3000;
 export const host = process.env.WEBSITE_HOSTNAME || `localhost:${port}`;
 
-export const databaseUrl = process.env.DATABASE_URL || 'sqlite:database.sqlite';
+export const databaseUrl = process.env.DATABASE_URL;
 
 export const analytics = {
 
@@ -47,6 +47,6 @@ export const heroku = {
 
 export const graphql = {
 
-  url: '/graphql',
+  url: process.env.GRAPHQL_URL || '/graphql',
 
 };

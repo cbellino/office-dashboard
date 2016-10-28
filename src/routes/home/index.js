@@ -11,6 +11,7 @@ export default {
     return {
       title: 'Dashboard',
       component: <Home />,
+      fetchData: Home.fetchData,
     };
   },
 

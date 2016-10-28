@@ -1,46 +1,29 @@
 /* @flow */
 
 import React, { Component, PropTypes } from 'react';
-import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import { connect } from 'react-redux';
 import Layout from '../../components/Layout';
 import PreviewSection from '../../containers/PreviewSection';
-import { fetchPreviews } from '../../actions';
-import s from './Home.css';
+import { prefetchPreviews } from '../../actions';
+
+const contextTypes = {
+  store: PropTypes.object.isRequired,
+};
 
 class Home extends Component {
 
-  componentDidMount() {
-    if (this.props.fetchData) {
-      this.props.fetchData();
-    }
-  }
+  static fetchData = [prefetchPreviews];
 
   render() {
     return (
       <Layout>
-        <div className={s.root}>
-          <div className={s.container}>
-            <PreviewSection />
-          </div>
+        <div>
+          <PreviewSection />
         </div>
       </Layout>
     );
   }
 }
 
-Home.propTypes = {
-  fetchData: PropTypes.func.isRequired,
-};
+Home.contextTypes = contextTypes;
 
-Home.contextTypes = {
-  store: PropTypes.object.isRequired,
-};
-
-function mapDispatchToProps(dispatch) {
-  return {
-    fetchData: () => dispatch(fetchPreviews()),
-  };
-}
-
-export default connect(undefined, mapDispatchToProps)(withStyles(s)(Home));
+export default Home;

@@ -19,15 +19,28 @@ function fetchPreviewsFailure(error): Action {
   return { type: 'PREVIEWS_FETCH_FAILED', error };
 }
 
-export function fetchPreviews() {
-  return (dispatch: Dispatch) => {
-    dispatch(fetchPreviewsRequest());
+function fetchPreviewsPromise(dispatch) {
+  dispatch(fetchPreviewsRequest());
 
-    return api.fetchPreviews()
-      .then((data) => dispatch(fetchPreviewsSuccess(data)))
-      .catch((error) => dispatch(fetchPreviewsFailure(error)))
-    ;
-  };
+  return new Promise((resolve, reject) => {
+    api.fetchPreviews()
+      .then((data) => {
+        dispatch(fetchPreviewsSuccess(data));
+        resolve(data);
+      })
+      .catch((error) => {
+        dispatch(fetchPreviewsFailure(error));
+        reject(error);
+      });
+  });
+}
+
+export function fetchPreviews() {
+  return (dispatch: Dispatch) => fetchPreviewsPromise(dispatch);
+}
+
+export function prefetchPreviews(dispatch) {
+  return fetchPreviewsPromise(dispatch);
 }
 
 function updatePreviewRequest(preview): Action {
@@ -83,8 +96,13 @@ export function updatePreview(preview: Preview) {
 
         dispatch(updatePreviewSuccess(updatedPreview));
         dispatch(updatePreviewSuccessNotification(updatedPreview));
+
+        return Promise.resolve(data);
       })
-      .catch((error) => dispatch(updatePreviewFailure(error)));
+      .catch((error) => {
+        dispatch(updatePreviewFailure(error));
+        return Promise.reject(error);
+      });
   };
 }
 

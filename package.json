@@ -49,7 +49,8 @@
     "redux-thunk": "^2.1.0",
     "sequelize": "3.24.4",
     "source-map-support": "0.4.5",
-    "sqlite3": "3.1.6",
+    "transit-immutable-js": "^0.6.0",
+    "transit-js": "^0.8.846",
     "universal-router": "1.2.2",
     "whatwg-fetch": "1.0.0"
   },

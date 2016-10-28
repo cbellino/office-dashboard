@@ -10,6 +10,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/server';
 import UniversalRouter from 'universal-router';
 import PrettyError from 'pretty-error';
+import transit from 'transit-immutable-js';
 import App from './components/App';
 import Html from './components/Html';
 import { ErrorPageWithoutStyle } from './routes/error/ErrorPage';
@@ -21,6 +22,7 @@ import routes from './routes';
 import assets from './assets'; // eslint-disable-line import/no-unresolved
 import { port } from './config';
 import configureStore from './store/configureStore';
+import fetchComponentsData from './core/fetchComponentsData';
 
 const app = express();
 
@@ -57,6 +59,9 @@ app.get('*', async (req, res, next) => {
   try {
     const css = [];
 
+    const store = configureStore();
+    const userAgent = req.get('user-agent');
+
     // Global (context) variables that can be easily accessed from any React component
     // https://facebook.github.io/react/docs/context.html
     const context = {
@@ -66,8 +71,8 @@ app.get('*', async (req, res, next) => {
         // eslint-disable-next-line no-underscore-dangle
         styles.forEach(style => css.push(style._getCss()));
       },
-      // TODO: initial state
-      store: configureStore(),
+      store,
+      userAgent,
     };
 
     const route = await UniversalRouter.resolve(routes, {
@@ -80,14 +85,19 @@ app.get('*', async (req, res, next) => {
       return;
     }
 
-    const data = { ...route };
-    data.children = ReactDOM.renderToString(<App context={context}>{route.component}</App>);
-    data.style = [...css].join('');
-    data.script = assets.main.js;
-    const html = ReactDOM.renderToStaticMarkup(<Html {...data} />);
+    fetchComponentsData(route.fetchData, store).then(() => {
+      const data = { ...route };
+      data.initialState = transit.toJSON(store.getState());
+      data.children = ReactDOM.renderToString(
+        <App context={context}>{route.component}</App>
+      );
+      data.style = [...css].join('');
+      data.script = assets.main.js;
+      const html = ReactDOM.renderToStaticMarkup(<Html {...data} />);
 
-    res.status(route.status || 200);
-    res.send(`<!doctype html>${html}`);
+      res.status(route.status || 200);
+      res.send(`<!doctype html>${html}`);
+    });
   } catch (err) {
     next(err);
   }
