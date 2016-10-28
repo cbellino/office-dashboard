@@ -84,6 +84,7 @@ export type Action =
   | { type: 'PREVIEW_UPDATE_REQUESTED', payload: { preview: Preview } }
   | { type: 'PREVIEW_UPDATE_SUCCEEDED', payload: { preview: Preview } }
   | { type: 'NOTIFICATION_OPENED', payload: NotificationPayload }
+  | { type: 'NOTIFICATION_CLOSED', }
   | { type: 'PREVIEW_UPDATE_FAILED', error: Error }
   | { type: 'PREVIEW_EDIT_STARTED', payload: { preview: Preview } }
   | { type: 'PREVIEW_EDIT_STOPPED', payload: { preview: Preview } }

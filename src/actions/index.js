@@ -53,8 +53,24 @@ function updatePreviewSuccessNotification(preview): Action {
   };
 }
 
+/**
+ * Sends a notification when the previews failed to load.
+ */
+export function fetchHomePreviewsFailureNotification() {
+  return {
+    type: 'NOTIFICATION_OPENED',
+    payload: {
+      notification: { message: 'Failed to fetch the previews.' },
+    },
+  };
+}
+
 function updatePreviewFailure(error): Action {
   return { type: 'PREVIEW_UPDATE_FAILED', error };
+}
+
+export function hideNotification(): Action {
+  return { type: 'NOTIFICATION_CLOSED' };
 }
 
 export function updatePreview(preview: Preview) {

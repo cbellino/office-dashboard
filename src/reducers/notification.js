@@ -1,9 +1,5 @@
 import { Map } from 'immutable';
 
-import {
-  NOTIFICATION_OPENED,
-} from '../constants/ActionTypes';
-
 /*
  * Updates the notification content and opens it.
  */
@@ -18,8 +14,10 @@ const INITIAL_NOTIFICATION_STATE = Map({
 
 function notificationReducer(state = INITIAL_NOTIFICATION_STATE, action) {
   switch (action.type) {
-    case NOTIFICATION_OPENED:
+    case 'NOTIFICATION_OPENED':
       return updateNotification(state, Map(action.payload.notification));
+    case 'NOTIFICATION_CLOSED':
+      return INITIAL_NOTIFICATION_STATE;
     default:
       return state;
   }

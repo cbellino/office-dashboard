@@ -1,12 +1,5 @@
 import { Map, List } from 'immutable';
-import {
-  PREVIEWS_FETCH_REQUESTED,
-  PREVIEWS_FETCH_FAILED,
-  PREVIEWS_FETCH_SUCCEEDED,
-  PREVIEW_EDIT_STARTED,
-  PREVIEW_EDIT_STOPPED,
-  NOTIFICATION_OPENED,
-} from '../constants/ActionTypes';
+import { fetchHomePreviewsFailureNotification } from '../actions';
 
 const INITIAL_HOME_STATE = Map({
   previews: Map({
@@ -45,30 +38,17 @@ function mergePreviewState(state, preview, previewState) {
   return state.mergeIn(['previews', 'states', preview.id], previewState);
 }
 
-/**
- * Sends a notification when the previews failed to load.
- */
-function fetchHomePreviewsFailureNotification() {
-  // TODO: move to actions
-  return {
-    type: NOTIFICATION_OPENED,
-    payload: {
-      notification: { message: 'Failed to fetch the previews.' },
-    },
-  };
-}
-
 function homeReducer(state = INITIAL_HOME_STATE, action) {
   switch (action.type) {
-    case PREVIEWS_FETCH_REQUESTED:
+    case 'PREVIEWS_FETCH_REQUESTED':
       return fetchHomePreviews(state, action.payload);
-    case PREVIEWS_FETCH_FAILED:
+    case 'PREVIEWS_FETCH_FAILED':
       return fetchHomePreviewsFailureNotification(state);
-    case PREVIEWS_FETCH_SUCCEEDED:
+    case 'PREVIEWS_FETCH_SUCCEEDED':
       return updateHomePreviews(state, action.payload.result.previews);
-    case PREVIEW_EDIT_STARTED:
+    case 'PREVIEW_EDIT_STARTED':
       return mergePreviewState(state, action.payload.preview, Map({ isEditing: true }));
-    case PREVIEW_EDIT_STOPPED:
+    case 'PREVIEW_EDIT_STOPPED':
       return mergePreviewState(state, action.payload.preview, Map({ isEditing: false }));
     default:
       return state;

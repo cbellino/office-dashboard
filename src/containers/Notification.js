@@ -4,20 +4,23 @@ import React, { PropTypes } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Snackbar from 'material-ui/Snackbar';
 import { connect } from 'react-redux';
+import { hideNotification } from '../actions';
 
 const propTypes = {
   notification: ImmutablePropTypes.mapContains({
     open: PropTypes.bool.isRequired,
     message: PropTypes.string.isRequired,
   }).isRequired,
+  onRequestClose: PropTypes.func.isRequired,
 };
 
-function Notification({ notification }) {
+function Notification({ notification, onRequestClose }) {
   return (
     <Snackbar
       open={notification.get('open')}
       message={notification.get('message')}
       autoHideDuration={2000}
+      onRequestClose={onRequestClose}
     />
   );
 }
@@ -30,4 +33,10 @@ function mapStateToProps(state) {
   return { notification };
 }
 
-export default connect(mapStateToProps)(Notification);
+function mapDispatchToProps(dispatch) {
+  return {
+    onRequestClose: () => dispatch(hideNotification()),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Notification);
