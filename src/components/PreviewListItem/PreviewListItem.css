@@ -1,9 +1,16 @@
 .root {
-
+  position: relative;
 }
 
 .status {
   position: absolute;
+  width: 36px;
   top: 44px;
-  left: -10px;
+}
+
+@media all and (min-width: 600px) {
+  .status {
+    width: 48px;
+    left: -10px;
+  }
 }
