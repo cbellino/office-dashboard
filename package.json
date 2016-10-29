@@ -36,6 +36,7 @@
     "pb": "^0.3.0",
     "pg": "^6.1.0",
     "pg-hstore": "^2.3.2",
+    "postcss": "^5.2.5",
     "pretty-error": "2.0.2",
     "query-string": "4.2.3",
     "react": "15.3.2",
@@ -49,6 +50,7 @@
     "redux-thunk": "^2.1.0",
     "sequelize": "3.24.4",
     "source-map-support": "0.4.5",
+    "stylelint": "^7.5.0",
     "transit-immutable-js": "^0.6.0",
     "transit-js": "^0.8.846",
     "universal-router": "1.2.2",
@@ -138,63 +140,9 @@
       }
     }
   },
-  "eslintConfig": {
-    "parser": "babel-eslint",
-    "extends": "airbnb",
-    "globals": {
-      "__DEV__": true
-    },
-    "env": {
-      "browser": true
-    },
-    "plugins": [
-      "flowtype"
-    ],
-    "rules": {
-      "arrow-parens": "off",
-      "generator-star-spacing": "off",
-      "import/extensions": "off",
-      "import/no-extraneous-dependencies": "off",
-      "react/forbid-prop-types": "off",
-      "react/jsx-filename-extension": "off",
-      "react/no-danger": "off",
-      "react/no-unused-prop-types": "off",
-      "new-cap": [
-        2,
-        {
-          "capIsNewExceptions": [
-            "Map",
-            "List"
-          ]
-        }
-      ]
-    }
-  },
-  "stylelint": {
-    "extends": "stylelint-config-standard",
-    "rules": {
-      "string-quotes": "single",
-      "property-no-unknown": [
-        true,
-        {
-          "ignoreProperties": [
-            "composes"
-          ]
-        }
-      ],
-      "selector-pseudo-class-no-unknown": [
-        true,
-        {
-          "ignorePseudoClasses": [
-            "global"
-          ]
-        }
-      ]
-    }
-  },
   "scripts": {
     "lint:js": "eslint src tools",
-    "lint:css": "stylelint \"src/**/*.{css,less,scss,sss}\"",
+    "lint:css": "stylelint \"src/**/*.css\"",
     "lint": "npm run lint:js && npm run lint:css",
     "test": "mocha \"src/**/*.test.js\" --require test/setup.js --compilers js:babel-register",
     "test:watch": "npm run test -- --reporter min --watch",
