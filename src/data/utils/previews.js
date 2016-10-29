@@ -42,12 +42,6 @@ export const previewOwners = {
     displayName: 'Mehdi',
     avatar: 'https://avatars2.githubusercontent.com/u/8351346?v=3&amp;s=72',
   },
-  '493193ad-686c-4e2d-8aac-d4433792f6f1': {
-    id: '493193ad-686c-4e2d-8aac-d4433792f6f1',
-    name: 'thomas-mckay',
-    displayName: 'Thomas McKay',
-    avatar: 'https://avatars0.githubusercontent.com/u/13025557?v=3&amp;s=72',
-  },
   'dfadc8c3-7c12-4844-8bb2-89f25100af70': {
     id: 'dfadc8c3-7c12-4844-8bb2-89f25100af70',
     name: 'trungutt',
