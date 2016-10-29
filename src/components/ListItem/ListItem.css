@@ -23,10 +23,6 @@
   margin-right: 12px;
 }
 
-.status {
-
-}
-
 .content {
   flex: 1 1 auto;
 }
@@ -61,8 +57,4 @@
   align-content: flex-end;
   align-items: flex-start;
   justify-content: flex-end;
-}
-
-.action {
-
 }

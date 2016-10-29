@@ -8,9 +8,9 @@
   height: 12px;
   padding: 1px 0;
   font-size: 0.5em;
-  background: #000000;
+  background: #000;
   border-radius: 5px;
-  color: #ffffff;
+  color: #fff;
   text-align: center;
   text-transform: uppercase;
   font-family: var(--font-family-base);

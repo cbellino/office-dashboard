@@ -57,7 +57,7 @@ class PreviewForm extends Component {
   onCommentChange: () => void;
   onOwnerChange: () => void;
   onSave: (e: Event) => void;
-  commentInput: TextField;
+  commentInput: TextField; // eslint-disable-line react/sort-comp
 
   componentDidMount() {
     this.commentInput.focus();
