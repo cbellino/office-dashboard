@@ -13,7 +13,7 @@ const INITIAL_STATE = Map();
 
 export default function configureStore(initialState: State = INITIAL_STATE) {
   const composeEnhancers = (
-    process.env.NODE_ENV !== 'production' &&
+    // process.env.NODE_ENV !== 'production' &&
     typeof window === 'object' &&
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ // eslint-disable-line no-underscore-dangle
   ) ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({}) // eslint-disable-line no-underscore-dangle
