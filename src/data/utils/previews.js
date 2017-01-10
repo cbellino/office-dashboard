@@ -14,9 +14,9 @@ export const previewOwners = {
   },
   '7ae68656-8eff-4e96-b450-9225a9fbfb1f': {
     id: '7ae68656-8eff-4e96-b450-9225a9fbfb1f',
-    name: 'thomasbertet',
-    displayName: 'Thomas',
-    avatar: 'https://avatars0.githubusercontent.com/u/2551574?v=3&amp;s=72',
+    name: 'chrisg93',
+    displayName: 'Christophe',
+    avatar: 'https://avatars3.githubusercontent.com/u/1113757?v=3&s=72',
   },
   '800c9877-de95-4eb8-a908-638088c15ce3': {
     id: '800c9877-de95-4eb8-a908-638088c15ce3',
