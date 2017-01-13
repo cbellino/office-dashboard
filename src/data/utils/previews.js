@@ -48,6 +48,12 @@ export const previewOwners = {
     displayName: 'Trung',
     avatar: 'https://avatars1.githubusercontent.com/u/18528548?v=3&amp;s=72',
   },
+  '363dc382-0498-4189-bc75-98237e7ff0eb': {
+    id: '363dc382-0498-4189-bc75-98237e7ff0eb',
+    name: 'dns-gh',
+    displayName: 'Dimitri',
+    avatar: 'https://avatars1.githubusercontent.com/u/10922555?v=3&amp;s=72',
+  },
 };
 
 const emptyPreview = {
