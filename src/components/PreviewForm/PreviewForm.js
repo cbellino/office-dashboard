@@ -137,7 +137,7 @@ class PreviewForm extends Component {
       >
         <MenuItem value={null} />
         {users.map(user => (
-          <MenuItem key={user.id} value={user.id} primaryText={user.name} />
+          <MenuItem key={user.id} value={user.id} primaryText={user.displayName} />
         ))}
       </SelectField>
     );
