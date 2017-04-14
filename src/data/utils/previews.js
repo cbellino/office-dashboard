@@ -18,11 +18,11 @@ export const previewOwners = {
     displayName: 'Christophe',
     avatar: 'https://avatars3.githubusercontent.com/u/1113757?v=3&s=72',
   },
-  '800c9877-de95-4eb8-a908-638088c15ce3': {
-    id: '800c9877-de95-4eb8-a908-638088c15ce3',
-    name: 'florenthemmi',
-    displayName: 'Florent',
-    avatar: 'https://avatars3.githubusercontent.com/u/4488419?v=3&amp;s=72',
+  'c6da0ce2-40a0-49b1-a39b-4cbc8c397140': {
+    id: 'c6da0ce2-40a0-49b1-a39b-4cbc8c397140',
+    name: 'IamTossan',
+    displayName: 'Albert',
+    avatar: 'https://avatars3.githubusercontent.com/u/21175850?v=3&s=72',
   },
   'fa607f1f-79f6-4387-854a-83accfdf5f8b': {
     id: 'fa607f1f-79f6-4387-854a-83accfdf5f8b',
@@ -36,11 +36,11 @@ export const previewOwners = {
     displayName: 'Silvin',
     avatar: 'https://avatars2.githubusercontent.com/u/13131918?v=3&amp;s=72',
   },
-  '087eaf5a-2e20-4e64-8bb6-d436f80d1e88': {
-    id: '087eaf5a-2e20-4e64-8bb6-d436f80d1e88',
-    name: 'mehdi',
-    displayName: 'Mehdi',
-    avatar: 'https://avatars2.githubusercontent.com/u/8351346?v=3&amp;s=72',
+  'b187d04a-5652-4056-a3ec-2ad79991db61': {
+    id: 'b187d04a-5652-4056-a3ec-2ad79991db61',
+    name: 'francois-b',
+    displayName: 'Francois',
+    avatar: 'https://avatars2.githubusercontent.com/u/973692?v=3&s=72',
   },
   'dfadc8c3-7c12-4844-8bb2-89f25100af70': {
     id: 'dfadc8c3-7c12-4844-8bb2-89f25100af70',
